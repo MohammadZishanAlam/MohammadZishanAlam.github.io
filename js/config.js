@@ -1,19 +1,24 @@
 /**
  * Portfolio User Configuration
- * Mohammad Zishan Alam — Data & Pipeline Engineer | B.Tech CSE
+ * Mohammad Zishan Alam — Aspiring Data Engineer & Problem Solver | B.Tech CSE
  */
 const USER_CONFIG = {
     // Basic Details
     name: "Mohammad Zishan Alam",
-    title: "Data & Pipeline Engineer | B.Tech CSE Undergrad",
-    tagline: "Data Analysis · ETL & Pipeline Engineering · Predictive Modeling",
-    bio: "Computer Science undergraduate with practical experience building high-throughput ETL pipelines, internal compliance dashboards, and predictive models during my internship at MECON Limited. Designed a 100,000+ record ETL pipeline that processes data at ~6,700 rows per second (<15 seconds total) and developed an RBAC-secured compliance tool used across departments. Focused on clean Python architecture, robust SQL data workflows, and turning complex operational data into reliable business intelligence.",
+    title: "Aspiring Data Engineer | CS Undergrad & Problem Solver",
+    tagline: "Data Engineering · DSA & Problem Solving · Python & SQL Architecture",
+    bio: "Computer Science undergraduate focused on Data Engineering, algorithmic problem solving, and building scalable data workflows. Experienced in developing modular Python applications, relational database schemas, and data processing scripts. Passionate about designing robust ETL pipelines, optimizing SQL queries, and solving complex challenges with clean, efficient code.",
     location: "Ranchi, Jharkhand, India",
     availabilityStatus: "Open to work and collaborate",
     
-    // Contact & Profiles
-    email: "alamzishan07@gmail.com",
-    phone: "+91 7859031586",
+    // Contact & Profiles (Assembled dynamically to prevent bot scraping)
+    emailUser: "alamzishan07",
+    emailDomain: "gmail.com",
+    get email() { return `${this.emailUser}@${this.emailDomain}`; },
+    phoneCode: "+91",
+    phoneNumber: "7859031586",
+    get phone() { return `${this.phoneCode} ${this.phoneNumber}`; },
+    
     githubUsername: "MohammadZishanAlam",
     linkedin: "https://linkedin.com/in/mohammad-zishan-alam-6ba779254",
     github: "https://github.com/MohammadZishanAlam",
@@ -21,29 +26,28 @@ const USER_CONFIG = {
     leetcode: "https://leetcode.com/",
     resumeUrl: "#resume-modal",
 
-    // College / University
+    // College / University (CGPA omitted; coursework emphasized)
     education: {
         degree: "Bachelor of Technology — Computer Science and Engineering",
         institution: "Chaibasa Engineering College, Chaibasa, Jharkhand",
         period: "2023 — Expected 2027",
-        gpa: "CGPA: 6.98 / 10.0 (up to Semester 4)",
-        focus: "Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, Software Engineering, Cloud Computing"
+        focus: "Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, Object-Oriented Programming, Software Engineering"
     },
 
-    // Key Production & Performance Metrics
+    // Core Technical Foundation Stats
     stats: [
-        { label: "ETL Processing Speed", value: 6700, suffix: " rows/s" },
-        { label: "SAP Records Processed", value: 100, suffix: "K+" },
-        { label: "Timesheets Audited", value: 9, suffix: "K+" },
-        { label: "Report Time Reduced", value: 95, suffix: "%" }
+        { label: "Core Focus", value: "Data Engineering" },
+        { label: "Primary Languages", value: "Python & SQL" },
+        { label: "Core Foundation", value: "DSA & DBMS" },
+        { label: "Internship Project", value: "Task Automation" }
     ],
 
-    // Typing Animation Target Roles
+    // Typing Animation Target Roles & Competencies
     roles: [
-        "Data & Pipeline Engineer",
-        "Data Analyst & BI Developer",
-        "B.Tech CSE Student",
+        "Aspiring Data Engineer",
+        "DSA & Algorithmic Problem Solver",
         "Python & SQL Developer",
-        "ETL Pipeline Designer"
+        "ETL Pipeline Designer",
+        "Data Analytics & BI Developer"
     ]
 };

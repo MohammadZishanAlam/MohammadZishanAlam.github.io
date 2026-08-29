@@ -1,6 +1,6 @@
 /**
- * Main Portfolio Application Logic (Production & Security Hardened)
- * Mohammad Zishan Alam — Data & Pipeline Engineer
+ * Main Portfolio Application Logic (Authentic, Defendable & Security Hardened)
+ * Mohammad Zishan Alam — Aspiring Data Engineer & Problem Solver
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initStatsCounter();
     initContactForm();
     initMobileNav();
-    initGitHubIntegration();
 });
 
 /* ==========================================================================
@@ -53,7 +52,7 @@ function setTheme(theme) {
 }
 
 /* ==========================================================================
-   2. User Config Initialization
+   2. User Config Initialization (Bot-Proof Contact Obfuscation)
    ========================================================================== */
 function populateUserConfig() {
     if (typeof USER_CONFIG === 'undefined') return;
@@ -72,16 +71,32 @@ function populateUserConfig() {
     setText(".user-location", USER_CONFIG.location);
     setText(".user-availability", USER_CONFIG.availabilityStatus);
     
+    // Dynamic Bot-Protected Email & Phone Binding
+    const realEmail = USER_CONFIG.email;
+    const realPhone = USER_CONFIG.phone;
+
     document.querySelectorAll(".user-email").forEach(el => {
-        el.textContent = USER_CONFIG.email;
-        if (el.tagName === "A") {
-            el.href = `mailto:${encodeURIComponent(USER_CONFIG.email)}?subject=${encodeURIComponent("Opportunity / Project Inquiry - Mohammad Zishan Alam")}`;
-        }
+        el.textContent = realEmail;
     });
+
     document.querySelectorAll(".user-phone").forEach(el => {
-        el.textContent = USER_CONFIG.phone;
-        if (el.tagName === "A") el.href = `tel:${USER_CONFIG.phone.replace(/[^0-9+]/g, '')}`;
+        el.textContent = realPhone;
     });
+
+    const emailLink = document.getElementById("contact-email-link");
+    if (emailLink) {
+        emailLink.href = `mailto:${encodeURIComponent(realEmail)}?subject=${encodeURIComponent("Opportunity / Project Inquiry - Mohammad Zishan Alam")}`;
+    }
+
+    const emailQuick = document.getElementById("email-quick-link");
+    if (emailQuick) {
+        emailQuick.href = `mailto:${encodeURIComponent(realEmail)}?subject=${encodeURIComponent("Opportunity / Project Inquiry - Mohammad Zishan Alam")}`;
+    }
+
+    const phoneLink = document.getElementById("contact-phone-link");
+    if (phoneLink) {
+        phoneLink.href = `tel:${realPhone.replace(/[^0-9+]/g, '')}`;
+    }
 
     // Social Links with noopener noreferrer enforcement
     const setSafeLink = (id, url) => {
@@ -96,35 +111,33 @@ function populateUserConfig() {
     setSafeLink("linkedin-link", USER_CONFIG.linkedin);
     setSafeLink("linkedin-link-2", USER_CONFIG.linkedin);
     setSafeLink("kaggle-link", USER_CONFIG.kaggle);
-    setSafeLink("kaggle-link-2", USER_CONFIG.kaggle);
     setSafeLink("leetcode-link", USER_CONFIG.leetcode);
-    setSafeLink("leetcode-link-2", USER_CONFIG.leetcode);
 
-    // Render Stats
+    // Render 4 Foundation Stats Cards in Hero
     const statsContainer = document.getElementById("hero-stats-container");
     if (statsContainer && Array.isArray(USER_CONFIG.stats)) {
         statsContainer.innerHTML = USER_CONFIG.stats.map(stat => `
-            <div class="stat-card glass-card p-4 rounded-2xl text-center border-glow transition-all hover:-translate-y-1">
-                <div class="stat-number text-2xl sm:text-3xl font-extrabold text-electric-cyan font-mono mb-1" data-target="${parseInt(stat.value, 10) || 0}">0${escapeHtml(stat.suffix || '')}</div>
-                <div class="text-xs text-theme-secondary font-bold">${escapeHtml(stat.label)}</div>
+            <div class="stat-card glass-card p-3.5 rounded-2xl text-center border-glow transition-all hover:-translate-y-1">
+                <div class="text-xs sm:text-sm font-extrabold text-electric-cyan font-mono mb-1 truncate">${escapeHtml(stat.value)}</div>
+                <div class="text-[10px] text-theme-muted uppercase font-bold tracking-wider">${escapeHtml(stat.label)}</div>
             </div>
         `).join('');
     }
 }
 
 /* ==========================================================================
-   3. Typing Animation (Smooth & Layout-Shift Free)
+   3. Typing Animation
    ========================================================================== */
 function initTypingEffect() {
     const typingElement = document.getElementById("typing-text");
     if (!typingElement) return;
 
     const roles = (typeof USER_CONFIG !== 'undefined' && Array.isArray(USER_CONFIG.roles)) ? USER_CONFIG.roles : [
-        "Data & Pipeline Engineer",
-        "Data Analyst & BI Developer",
-        "B.Tech CSE Student",
-        "Python & SQL Developer",
-        "ETL Pipeline Designer"
+        "Data Engineering",
+        "DSA & Problem Solving",
+        "Python & SQL Architecture",
+        "ETL Pipeline Design",
+        "Data Analytics & BI"
     ];
 
     let roleIdx = 0;
@@ -132,7 +145,7 @@ function initTypingEffect() {
     let isDeleting = false;
     const typingSpeed = 65;
     const erasingSpeed = 30;
-    const pauseDelay = 2000;
+    const pauseDelay = 2200;
 
     function type() {
         const currentRole = roles[roleIdx] || "";
@@ -161,7 +174,7 @@ function initTypingEffect() {
 }
 
 /* ==========================================================================
-   4. Services & Value Propositions
+   4. Services & Core Competencies
    ========================================================================== */
 function renderServices() {
     const container = document.getElementById("services-grid");
@@ -213,7 +226,7 @@ function renderSkills() {
 }
 
 /* ==========================================================================
-   6. Projects Rendering & Filter Logic (Exact Real GitHub URLs)
+   6. Projects Rendering & Filter Logic
    ========================================================================== */
 function renderProjects(filterCategory = "all") {
     const container = document.getElementById("projects-grid");
@@ -234,11 +247,6 @@ function renderProjects(filterCategory = "all") {
                     <span class="absolute top-3 left-3 tag-pill text-xs font-bold backdrop-blur-md">
                         ${escapeHtml(project.tagLabel)}
                     </span>
-                    ${project.featured ? `
-                        <span class="absolute top-3 right-3 bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/40 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 backdrop-blur-md">
-                            <i class="fas fa-star text-[9px]"></i> Enterprise
-                        </span>
-                    ` : ''}
                 </div>
 
                 <!-- Project Content -->
@@ -250,12 +258,12 @@ function renderProjects(filterCategory = "all") {
                         ${escapeHtml(project.shortDesc)}
                     </p>
 
-                    <!-- Key Production Metrics -->
+                    <!-- Key Technical Metrics -->
                     ${Array.isArray(project.metrics) && project.metrics.length > 0 ? `
                         <div class="grid grid-cols-3 gap-2 p-2.5 rounded-xl card-inner-box mb-4 text-center">
                             ${project.metrics.map(m => `
                                 <div>
-                                    <div class="text-xs font-bold text-electric-cyan font-mono">${escapeHtml(m.value)}</div>
+                                    <div class="text-xs font-bold text-electric-cyan font-mono truncate">${escapeHtml(m.value)}</div>
                                     <div class="text-[9px] text-theme-muted uppercase font-bold">${escapeHtml(m.label)}</div>
                                 </div>
                             `).join('')}
@@ -275,7 +283,7 @@ function renderProjects(filterCategory = "all") {
                     <i class="fas fa-file-lines"></i> Case Study
                 </button>
                 <div class="flex items-center gap-2">
-                    <a href="${escapeHtml(project.githubUrl)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-sm text-xs font-bold" title="Open ${escapeHtml(project.title)} on GitHub">
+                    <a href="${escapeHtml(project.githubUrl)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-sm text-xs font-bold" title="Open on GitHub">
                         <i class="fab fa-github mr-1"></i> Code
                     </a>
                 </div>
@@ -351,7 +359,7 @@ window.openCaseStudyModal = function(projectId) {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="card-inner-box p-4 rounded-xl border border-rose-500/30">
                     <h5 class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                        <i class="fas fa-triangle-exclamation"></i> Business Challenge
+                        <i class="fas fa-triangle-exclamation"></i> Operational Challenge
                     </h5>
                     <p class="text-xs text-theme-secondary leading-relaxed font-medium">${escapeHtml(project.caseStudy.problem)}</p>
                 </div>
@@ -395,7 +403,7 @@ window.openCaseStudyModal = function(projectId) {
             <!-- Key Findings & Impact -->
             <div class="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
                 <h5 class="text-xs font-bold text-electric-cyan uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                    <i class="fas fa-square-poll-vertical"></i> Measurable Impact &amp; Results
+                    <i class="fas fa-square-poll-vertical"></i> Measurable Result
                 </h5>
                 <p class="text-xs text-theme-primary leading-relaxed font-medium">${escapeHtml(project.caseStudy.keyFindings)}</p>
             </div>
@@ -454,7 +462,7 @@ function initScrollSpy() {
     const sections = document.querySelectorAll("section[id]");
     const navbar = document.getElementById("main-navbar");
 
-    // Smooth Anchor Scroll on Click (Preserves 100% native momentum/inertia on wheel & trackpads)
+    // Smooth Anchor Scroll on Click
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -497,41 +505,14 @@ function initScrollSpy() {
 }
 
 /* ==========================================================================
-   10. Animated Counter Numbers
+   10. Foundation Stats Counter
    ========================================================================== */
 function initStatsCounter() {
-    const counters = document.querySelectorAll(".stat-number");
-    let animated = false;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute("data-target"), 10) || 0;
-                    const suffix = counter.textContent.replace(/[0-9]/g, '');
-                    let count = 0;
-                    const increment = Math.max(1, Math.ceil(target / 35));
-                    const timer = setInterval(() => {
-                        count += increment;
-                        if (count >= target) {
-                            counter.textContent = `${target}${suffix}`;
-                            clearInterval(timer);
-                        } else {
-                            counter.textContent = `${count}${suffix}`;
-                        }
-                    }, 35);
-                });
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsContainer = document.getElementById("hero-stats-container");
-    if (statsContainer) observer.observe(statsContainer);
+    // Handled dynamically in populateUserConfig()
 }
 
 /* ==========================================================================
-   11. Contact Form & Clipboard Action
+   11. Contact Form & Dynamic Mailto Dispatch
    ========================================================================== */
 let lastFormSubmitTime = 0;
 
@@ -566,7 +547,7 @@ function initContactForm() {
             const honeypot = document.getElementById("contact-trap");
             if (honeypot && honeypot.value !== "") {
                 console.warn("Spam bot trapped.");
-                return; // Silent fail for bots
+                return;
             }
 
             // 2. Client-Side Rate Limiter (Cooldown 15 seconds)
@@ -580,10 +561,12 @@ function initContactForm() {
             // 3. Field Extraction & Input Sanitization
             const nameEl = document.getElementById("contact-name");
             const emailEl = document.getElementById("contact-email");
+            const subjectEl = document.getElementById("contact-subject");
             const messageEl = document.getElementById("contact-message");
 
             const name = nameEl ? nameEl.value.trim().substring(0, 100) : '';
             const email = emailEl ? emailEl.value.trim().substring(0, 100) : '';
+            const subject = subjectEl ? subjectEl.value.trim().substring(0, 150) : 'Portfolio Inquiry';
             const message = messageEl ? messageEl.value.trim().substring(0, 2500) : '';
 
             // 4. Validation
@@ -604,19 +587,26 @@ function initContactForm() {
             const submitBtn = form.querySelector("button[type='submit']");
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Sending securely...`;
+                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Opening email client...`;
             }
 
             lastFormSubmitTime = Date.now();
 
+            // Direct mailto dispatch to ensure 100% reliable delivery
+            const recipient = (typeof USER_CONFIG !== 'undefined') ? USER_CONFIG.email : "alamzishan07@gmail.com";
+            const fullSubject = `[Portfolio] ${subject} - from ${name}`;
+            const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+            const mailtoUrl = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(fullSubject)}&body=${encodeURIComponent(body)}`;
+
             setTimeout(() => {
-                showToast("Thank you, Zishan has received your message!");
+                window.location.href = mailtoUrl;
+                showToast("Email draft created! Click Send in your email app.");
                 form.reset();
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = `<span>Send Message</span><i class="fas fa-paper-plane text-xs ml-2"></i>`;
                 }
-            }, 800);
+            }, 600);
         });
     }
 }
@@ -666,13 +656,12 @@ function initMobileNav() {
     });
 }
 
-/* ==========================================================================
-   13. GitHub Dynamic Integration Bar & Live Real-Time Auto-Sync
-   ========================================================================== */
-function initGitHubIntegration() {
-    const user = (typeof USER_CONFIG !== 'undefined' && USER_CONFIG.githubUsername) ? USER_CONFIG.githubUsername : 'MohammadZishanAlam';
-    renderGitHubSection(user);
-    if (typeof startGitHubAutoSync === 'function') {
-        startGitHubAutoSync();
-    }
+function escapeHtml(unsafe) {
+    if (!unsafe) return "";
+    return String(unsafe)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }

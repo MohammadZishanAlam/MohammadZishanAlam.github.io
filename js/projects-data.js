@@ -1,165 +1,135 @@
 /**
- * Portfolio Projects Data & Case Studies
- * Mohammad Zishan Alam — Production-grade ETL, Analytics & ML Engineering
- * Real GitHub Repository Links
+ * Portfolio Projects, Skills & Timeline Data
+ * Mohammad Zishan Alam — Aspiring Data Engineer & Problem Solver
  */
+
 const PROJECTS_DATA = [
     {
         id: "sap-analysis-tool",
         title: "Enterprise SAP Analysis & ETL Tool",
-        category: "engineering", // categories: all, engineering, analytics, ml
-        tagLabel: "Production ETL · MECON Limited",
-        shortDesc: "Built an in-house ETL pipeline that ingests, cleans, and reconciles over 100,000 SAP records at ~6,700 rows per second, reducing daily finance report preparation from hours to under 15 seconds.",
+        category: "engineering",
+        tagLabel: "Data Engineering · Automation",
+        shortDesc: "Standalone Python ETL tool developed during internship to automate the ingestion, validation, and reconciliation of batch operational records from Excel/CSV exports.",
         featured: true,
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
-        techStack: ["Python", "Pandas", "NumPy", "Plotly", "FPDF", "ETL Architecture"],
+        techStack: ["Python", "Pandas", "ETL Architecture", "Data Cleaning", "Automation"],
         metrics: [
-            { label: "Throughput", value: "~6,700 rows/s" },
-            { label: "Dataset Volume", value: "100,000+ rows" },
-            { label: "Execution Time", value: "< 15 seconds" }
+            { label: "Batch Parsing", value: "High-Speed" },
+            { label: "Architecture", value: "Zero External Dep" },
+            { label: "Work", value: "Internship Task" }
         ],
         githubUrl: "https://github.com/MohammadZishanAlam/SAP-Analysis-Tool",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/SAP-Analysis-Tool",
         caseStudy: {
-            overview: "Developed and deployed a standalone desktop ETL tool for the finance department at MECON Limited (Ranchi) to automate data extraction, quality validation, and payment reconciliation from large SAP accounting exports.",
-            problem: "Finance analysts previously reconciled client payments, overdue invoices, and ledger balances by hand across large Excel spreadsheets. The manual workflow was slow, difficult to cross-verify, and took multiple hours every day.",
-            solution: "Created a fast, zero-dependency Python and Pandas pipeline that parses raw SAP files, handles data type inconsistencies, runs automated validation checks, and generates visual Plotly reports alongside instant PDF summaries.",
-            dataset: "Exported SAP transaction tables containing more than 100,000 client invoice and payment records.",
+            overview: "Developed under mentor guidance at MECON Limited to eliminate repetitive manual spreadsheet auditing. Automatically parses, standardizes, and reconciles large tabular transaction exports.",
+            problem: "Finance and operational teams spent hours manually cross-checking large spreadsheet exports, leading to operational delays and potential data-entry discrepancies.",
+            solution: "Engineered a standalone Python script utilizing optimized Pandas vectorization to automate data ingestion, normalize mismatched date/currency formats, and flag transaction anomalies.",
+            dataset: "Multi-column transactional ledgers, vendor invoice batches, and departmental account balances.",
             architecture: [
-                "1. Data Ingestion: High-speed parser supporting various SAP spreadsheet and CSV layouts without external database dependencies",
-                "2. Data Cleansing: Vectorized type conversion, null-value handling, and currency formatting",
-                "3. Aggregation & Reconciliation: Grouping by client account, project code, invoice aging brackets, and milestones",
-                "4. Reporting Engine: Custom FPDF integration generating formatted management summaries in seconds"
+                "1. Ingestion: Reads raw multi-format CSV and Excel files into unified memory structures",
+                "2. Cleaning: Strips formatting artifacts, standardizes date formats, and handles null values",
+                "3. Reconciliation: Cross-references debit/credit columns and flags discrepancies",
+                "4. Export: Generates clean, audit-ready summary tables automatically"
             ],
-            keyFindings: "Cut daily reporting time by over 95% while eliminating manual transcription errors. The tool is in active daily production use at MECON Limited."
+            keyFindings: "Successfully automated a previously manual multi-hour cross-checking process into an automated workflow completing in seconds."
         }
     },
     {
-        id: "timesheet-compliance-dashboard",
+        id: "timesheet-application",
         title: "Employee Timesheet Compliance Application",
         category: "engineering",
-        tagLabel: "Data Automation · MECON Limited",
-        shortDesc: "Developed an internal Streamlit application backed by SQLite to monitor 9,000+ employee timesheet records, cutting attendance anomaly detection time by 80% with role-based access control.",
+        tagLabel: "Streamlit App · Internal Tool",
+        shortDesc: "Interactive timesheet monitoring dashboard built with Streamlit and SQLite, featuring role-based views (Admin/Reviewer) and automated anomaly detection.",
         featured: true,
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
-        techStack: ["Python", "Streamlit", "Pandas", "SQLite", "RBAC Security"],
+        techStack: ["Python", "Streamlit", "SQLite", "Data Validation", "RBAC Views"],
         metrics: [
-            { label: "Records Analyzed", value: "9,000+ logs" },
-            { label: "Audit Time Cut", value: "80% faster" },
-            { label: "Deployment", value: "Company-Wide" }
+            { label: "Database", value: "SQLite" },
+            { label: "Access", value: "Role Views" },
+            { label: "Domain", value: "HR Compliance" }
         ],
         githubUrl: "https://github.com/MohammadZishanAlam/TimeSheet-Application",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/TimeSheet-Application",
         caseStudy: {
-            overview: "Created a role-secured web application for HR managers and department heads at MECON Limited to track employee timesheet submissions, identify missing hours, and generate department-level compliance reports.",
-            problem: "HR teams needed an efficient way to audit monthly work logs for 9,000+ employees across multiple locations while ensuring department heads could only see records for their own staff.",
-            solution: "Built a Streamlit platform connected to an optimized SQLite database with Role-Based Access Control (RBAC), automated rule-based anomaly detection, and filterable department views.",
-            dataset: "Monthly timesheet logs and shift records for over 9,000 employees.",
+            overview: "An internal compliance application built during the MECON internship to track and audit timesheet submissions across multiple departments.",
+            problem: "Tracking employee attendance and overtime compliance across departments required manual consolidation from disconnected logs.",
+            solution: "Built a Streamlit dashboard powered by an SQLite backend with role-based filtering, allowing reviewers and administrators to monitor submission compliance and detect missing logs.",
+            dataset: "Employee attendance records, shift schedules, and department submission status tables.",
             architecture: [
-                "1. Database Ingestion: Automated monthly log loading into indexed SQLite tables",
-                "2. Access Control: Role-based permissions preventing unauthorized cross-department data access",
-                "3. Anomaly Engine: Logic checks for missing logs, overlapping shifts, and incomplete hours",
-                "4. Reporting Dashboard: Interactive department summaries and visual compliance status indicators"
+                "1. Database Layer: Normalized SQLite tables for users, roles, and timesheet entries",
+                "2. Authentication: Role-based interface filtering (Admin vs. Reviewer views)",
+                "3. Validation Engine: Automated logic detecting duplicate, missing, or irregular hours",
+                "4. Visual Reporting: Interactive charts displaying department compliance metrics"
             ],
-            keyFindings: "Reduced the time needed for monthly compliance reviews from several days to just a few minutes, making audit reporting seamless for HR."
+            keyFindings: "Simplified weekly audit workflows by giving reviewers an instant visual breakdown of departmental submission compliance."
         }
     },
     {
-        id: "financial-analysis-tool",
-        title: "Financial Analysis & Reporting Tool",
+        id: "video-game-sales",
+        title: "Video Game Global Sales Analysis",
         category: "analytics",
-        tagLabel: "BI & Reporting · MECON Limited",
-        shortDesc: "Built an internal financial intelligence tool with interactive Plotly visualizations and automated PDF generation to assist finance teams with budget reviews and ledger analysis.",
-        featured: true,
-        image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80",
-        techStack: ["Python", "Plotly", "Pandas", "FPDF", "Data Quality"],
-        metrics: [
-            { label: "Report Creation", value: "Automated" },
-            { label: "Chart Views", value: "Multi-View" },
-            { label: "Data Quality", value: "Validated" }
-        ],
-        githubUrl: "https://github.com/MohammadZishanAlam/SAP-Analysis-Tool",
-        liveDemoUrl: "https://github.com/MohammadZishanAlam/SAP-Analysis-Tool",
-        caseStudy: {
-            overview: "Engineered a desktop data application at MECON Limited to give finance teams an interactive visual interface for tracking ledger balances, monitoring project costs, and exporting formatted executive reports.",
-            problem: "Finance officers had to manually compile ledger trends and variance figures into presentations, which made quarterly reviews slow and prone to formatting inconsistencies.",
-            solution: "Developed a Python application combining Pandas data processing, interactive Plotly charts, and an automated PDF document generator using FPDF.",
-            dataset: "Multi-year project ledger entries, cost allocations, and payment milestones.",
-            architecture: [
-                "1. Data Loading: Integrated multiple ledger sources into a clean schema",
-                "2. Statistical Analysis: Automated calculation of year-over-year trends and budget variances",
-                "3. Interactive Charts: Breakdown charts, waterfall cost views, and timeline graphs with Plotly",
-                "4. PDF Export: Standardized, one-click PDF reports complete with summary tables and charts"
-            ],
-            keyFindings: "Made financial reviews significantly faster by providing clean, standardized visual reports with built-in data validation."
-        }
-    },
-    {
-        id: "video-game-market-analysis",
-        title: "Video Game Sales Analysis",
-        category: "analytics",
-        tagLabel: "Data Cleaning & EDA · Personal Project",
-        shortDesc: "Engineered a data cleaning pipeline across 5,000+ sales records—handling currency normalization, missing-value imputation, and 95th-percentile Winsorization—to analyze regional market trends.",
+        tagLabel: "EDA · Market Analysis",
+        shortDesc: "End-to-end data analytics project examining 5,000+ gaming title sales records with outlier treatment via 95th-percentile Winsorization and visual market segmentation.",
         featured: false,
         image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80",
-        techStack: ["Python", "Pandas", "Matplotlib", "Seaborn", "Winsorization", "EDA"],
+        techStack: ["Python", "Pandas", "Matplotlib", "Seaborn", "Statistical Analysis"],
         metrics: [
-            { label: "Records Cleaned", value: "5,000+" },
-            { label: "Outlier Capping", value: "95th %ile" },
-            { label: "Visualizations", value: "4 Chart Types" }
+            { label: "Records", value: "5,000+" },
+            { label: "Treatment", value: "Winsorization" },
+            { label: "Focus", value: "EDA & BI" }
         ],
         githubUrl: "https://github.com/MohammadZishanAlam/Video-game-sales-analysis",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/Video-game-sales-analysis",
         caseStudy: {
-            overview: "An exploratory data analysis project examining video game sales patterns across North America, Europe, Japan, and international markets over multiple console generations.",
-            problem: "Historical sales datasets had mixed currency formats, missing publisher metadata, and high-revenue outliers that skewed standard averages.",
-            solution: "Built a Python cleaning pipeline using Pandas to normalize currency values, impute missing fields, and apply Winsorization at the 95th percentile, followed by Seaborn and Matplotlib visual distributions.",
-            dataset: "Historical records for over 5,000 video game titles, publishers, and release platforms.",
+            overview: "A comprehensive Exploratory Data Analysis project uncovering regional consumer purchasing patterns across North America, Europe, Japan, and other global markets.",
+            problem: "Raw sales data contained significant extreme skew from a handful of mega-blockbusters that distorted baseline regional trends.",
+            solution: "Implemented 95th-percentile Winsorization to cap extreme outliers and performed regional correlation analysis across genres, platforms, and release eras.",
+            dataset: "Kaggle video game sales dataset comprising genre, platform, publisher, and regional revenue metrics.",
             architecture: [
-                "1. Data Cleaning: Currency harmonization, publisher normalization, and missing value handling",
-                "2. Outlier Treatment: Applied 95th-percentile Winsorization to manage revenue spikes from blockbuster titles",
-                "3. Market Comparison: Regional sales breakdowns (North America, Europe, Japan) by genre and platform",
-                "4. Visual Reporting: Clear distribution plots, heatmaps, and trend lines"
+                "1. Data Cleaning: Addressed missing publisher metadata and standardized numeric types",
+                "2. Outlier Management: Applied statistical Winsorization to stabilize variance",
+                "3. Regional Breakdown: Compared market preferences across North America, EU, and Japan",
+                "4. Visualization: Created publication-quality Seaborn distribution charts"
             ],
-            keyFindings: "Highlighted significant differences in genre preference across regional markets and showed how console lifecycles influence sales peaks."
+            keyFindings: "Highlighted significant divergence in regional genre preferences (e.g., RPG dominance in Japan vs. Action/Shooter lead in North America)."
         }
     },
     {
-        id: "international-market-entry",
-        title: "Car Sales Prediction & Market Entry Analysis",
+        id: "car-sales-prediction",
+        title: "Car Sales Prediction & Market Entry (Capstone)",
         category: "ml",
-        tagLabel: "Machine Learning · Capstone Project",
-        shortDesc: "Trained a Random Forest classification model on consumer demographic and income data to identify 56,000+ prospective buyers for an international automotive market entry in India and Japan.",
+        tagLabel: "Machine Learning · Capstone",
+        shortDesc: "Applied machine learning capstone project predicting automotive purchasing intent using Random Forest classification based on consumer demographics and income factors.",
         featured: false,
         image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80",
-        techStack: ["Python", "Scikit-Learn", "Random Forest", "Pandas", "Predictive Modeling"],
+        techStack: ["Python", "Scikit-Learn", "Random Forest", "Feature Engineering"],
         metrics: [
-            { label: "Algorithm", value: "Random Forest" },
-            { label: "Target Audience", value: "56,000+ leads" },
-            { label: "Domain", value: "Market Strategy" }
+            { label: "Model", value: "Random Forest" },
+            { label: "Dataset", value: "Demographics" },
+            { label: "Outcome", value: "Segmentation" }
         ],
         githubUrl: "https://github.com/MohammadZishanAlam/car-sales-prediction-capstone-project",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/car-sales-prediction-capstone-project",
         caseStudy: {
-            overview: "A machine learning capstone project analyzing automotive market datasets across India and Japan to help an automotive manufacturer evaluate whether and how to enter the Indian vehicle market.",
-            problem: "Entering a competitive automotive market required data-driven customer segmentation rather than broad assumptions about purchasing ability.",
-            solution: "Built and evaluated a Random Forest classifier in Scikit-Learn to estimate purchase propensity using factors such as age, income brackets, urban location, and commute habits.",
+            overview: "A machine learning capstone project analyzing automotive market datasets across India and Japan to evaluate customer purchase propensity for targeted vehicle launches.",
+            problem: "Evaluating market entry opportunities required data-driven customer segmentation rather than broad assumptions about purchasing ability.",
+            solution: "Trained and evaluated a Random Forest classifier in Scikit-Learn to estimate purchase propensity using factors such as age, income brackets, urban location, and commute habits.",
             dataset: "Consumer demographic surveys, household income data, and vehicle ownership trends.",
             architecture: [
                 "1. Data Preparation: Categorical encoding, feature scaling, and correlation analysis",
                 "2. Model Training: Hyperparameter tuning of Random Forest decision trees",
                 "3. Feature Importance: Identified top predictors including income brackets and commute patterns",
-                "4. Segment Projection: Quantified a primary qualified target audience of over 56,000 potential buyers"
+                "4. Segment Projection: Quantified prospective high-conversion target segments"
             ],
             keyFindings: "Identified high-conversion urban demographic segments with 3.4x higher purchase intent, providing actionable targeting criteria."
         }
     },
     {
         id: "gymbot-streamlit",
-        title: "Gym-Bot: AI Fitness & Workout Assistant",
+        title: "Gym-Bot: AI Fitness Assistant",
         category: "ml",
         tagLabel: "Streamlit App · Personal Project",
-        shortDesc: "Interactive AI fitness recommendation application built with Python and Streamlit, providing personalized workout and diet guidance based on user profile and fitness targets.",
+        shortDesc: "Interactive fitness recommendation application built with Python and Streamlit, providing customized workout plans and nutritional insights.",
         featured: false,
         image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=900&q=80",
         techStack: ["Python", "Streamlit", "Data Processing", "UI Design"],
@@ -181,60 +151,60 @@ const PROJECTS_DATA = [
                 "3. Plan Generator: Dynamic weekly training schedules tailored for strength, hypertrophy, or endurance",
                 "4. Interactive UI: Responsive Streamlit components with instant feedback"
             ],
-            keyFindings: "Delivered a lightweight, highly responsive application demonstrating rapid frontend delivery with Streamlit and clean Python logic."
+            keyFindings: "Delivered a lightweight, responsive application demonstrating rapid frontend delivery with Streamlit and clean Python logic."
         }
     }
 ];
 
-// Skills Matrix strictly aligned with Zishan's Resume
+// Skills Matrix
 const SKILLS_DATA = {
     dataAnalysis: [
         { name: "Exploratory Data Analysis (EDA)", level: 95, icon: "fas fa-magnifying-glass-chart", tag: "Core" },
-        { name: "Statistical & Predictive Modeling", level: 90, icon: "fas fa-chart-line", tag: "Modeling" },
-        { name: "Random Forest Classification", level: 88, icon: "fas fa-tree", tag: "ML" },
-        { name: "Data Cleaning & Wrangling", level: 96, icon: "fas fa-broom", tag: "Data" },
-        { name: "Outlier Analysis & Winsorization", level: 92, icon: "fas fa-filter-circle-xmark", tag: "Stats" },
-        { name: "Data Validation & Quality Checks", level: 94, icon: "fas fa-circle-check", tag: "Quality" }
+        { name: "Statistical & Predictive Modeling", level: 88, icon: "fas fa-chart-line", tag: "Modeling" },
+        { name: "Random Forest Classification", level: 85, icon: "fas fa-tree", tag: "ML" },
+        { name: "Data Cleaning & Wrangling", level: 95, icon: "fas fa-broom", tag: "Data" },
+        { name: "Outlier Analysis & Winsorization", level: 90, icon: "fas fa-filter-circle-xmark", tag: "Stats" },
+        { name: "Data Validation & Quality Checks", level: 92, icon: "fas fa-circle-check", tag: "Quality" }
     ],
     dataEngineering: [
-        { name: "ETL Pipeline Design", level: 95, icon: "fas fa-network-wired", tag: "Core ETL" },
-        { name: "Pipeline Orchestration & Automation", level: 90, icon: "fas fa-gears", tag: "Pipelines" },
-        { name: "Role-Based Access Control (RBAC)", level: 88, icon: "fas fa-shield-halved", tag: "Security" },
-        { name: "Relational Database Design", level: 90, icon: "fas fa-database", tag: "Databases" },
-        { name: "API Integration", level: 86, icon: "fas fa-plug", tag: "Backend" },
-        { name: "SQL (MySQL, SQLite, PostgreSQL)", level: 92, icon: "fas fa-table-cells", tag: "SQL" }
+        { name: "ETL Pipeline Design", level: 92, icon: "fas fa-network-wired", tag: "Core ETL" },
+        { name: "SQL Query Optimization", level: 90, icon: "fas fa-database", tag: "SQL" },
+        { name: "Relational Schema Design", level: 88, icon: "fas fa-table", tag: "RDBMS" },
+        { name: "Batch Data Processing", level: 92, icon: "fas fa-gears", tag: "Batch" },
+        { name: "Data Transformation & Parsing", level: 94, icon: "fas fa-shuffle", tag: "Pandas" },
+        { name: "SQLite & Relational Databases", level: 90, icon: "fas fa-server", tag: "Database" }
     ],
     biAndVisualization: [
-        { name: "Plotly Interactive Visualizations", level: 94, icon: "fas fa-chart-pie", tag: "Interactive" },
-        { name: "Streamlit Dashboard Development", level: 95, icon: "fas fa-desktop", tag: "Apps" },
-        { name: "Matplotlib & Seaborn", level: 92, icon: "fas fa-chart-area", tag: "Python" },
-        { name: "Power BI & Tableau", level: 84, icon: "fas fa-square-poll-vertical", tag: "BI" },
-        { name: "FPDF Automated Report Generation", level: 90, icon: "fas fa-file-pdf", tag: "Reporting" },
-        { name: "Dashboard UI & Layout Design", level: 92, icon: "fas fa-window-maximize", tag: "Dashboards" }
+        { name: "Streamlit Application Development", level: 94, icon: "fas fa-laptop-code", tag: "Frontend" },
+        { name: "Matplotlib & Seaborn", level: 92, icon: "fas fa-chart-area", tag: "Charts" },
+        { name: "Plotly Interactive Dashboards", level: 88, icon: "fas fa-chart-column", tag: "Plotly" },
+        { name: "Role-Based UI Filtering", level: 88, icon: "fas fa-user-shield", tag: "UI Flow" },
+        { name: "Executive PDF & Table Reports", level: 90, icon: "fas fa-file-pdf", tag: "Reports" },
+        { name: "Interactive Data Visualizations", level: 90, icon: "fas fa-chart-pie", tag: "Visuals" }
     ],
     languagesAndTools: [
-        { name: "Python", level: 95, icon: "fab fa-python", tag: "Primary" },
-        { name: "Pandas & NumPy", level: 95, icon: "fas fa-table", tag: "Core" },
-        { name: "Scikit-Learn", level: 88, icon: "fas fa-brain", tag: "ML" },
-        { name: "Java, C, C++", level: 82, icon: "fas fa-code", tag: "Languages" },
-        { name: "Git & GitHub", level: 90, icon: "fab fa-git-alt", tag: "DevOps" },
-        { name: "Google Cloud Platform (GCP)", level: 80, icon: "fab fa-google", tag: "Cloud" }
+        { name: "Python (Pandas, NumPy, Scikit-learn)", level: 95, icon: "fab fa-python", tag: "Primary" },
+        { name: "Data Structures & Algorithms (DSA)", level: 88, icon: "fas fa-brain", tag: "DSA" },
+        { name: "SQL & Relational Databases", level: 92, icon: "fas fa-database", tag: "Query" },
+        { name: "C / C++ (Core Programming)", level: 85, icon: "fas fa-code", tag: "Systems" },
+        { name: "Git & Version Control", level: 90, icon: "fab fa-git-alt", tag: "Tool" },
+        { name: "VS Code & Jupyter Notebooks", level: 94, icon: "fas fa-terminal", tag: "IDE" }
     ]
 };
 
-// Timeline: Experience & Education strictly aligned with Resume
+// Timeline Data (Honest, Defendable, and CGPA-Free)
 const TIMELINE_DATA = [
     {
         type: "experience",
-        title: "Software Development & Data Automation Intern",
+        title: "Software & Data Automation Intern",
         subtitle: "MECON Limited, Ranchi (Govt. of India Enterprise)",
         period: "April 2026 – May 2026",
-        description: "Independently built and deployed 3 desktop data applications from requirements to final delivery: the SAP Analysis Tool, Timesheet Compliance Dashboard, and Financial Analysis Tool.",
+        description: "Under the guidance of senior engineering mentors, analyzed operational bottlenecks and developed Python automation tools to replace repetitive manual spreadsheet reconciliation and timesheet tracking.",
         badge: "Industry Internship",
         highlights: [
-            "Engineered a zero-dependency ETL pipeline processing 100,000+ SAP records at ~6,700 rows per second (<15s runtime), currently in daily active use by finance teams.",
-            "Built an RBAC-secured Streamlit dashboard to audit 9,000+ employee timesheets, reducing anomaly detection time by ~80%.",
-            "Added Role-Based Access Control and multi-stage data validation to keep sensitive financial and employee data secure and audit-ready."
+            "Developed Python and Pandas batch parsing scripts to automate cross-checking of Excel/CSV operational records.",
+            "Built an internal Streamlit dashboard for timesheet compliance auditing with multi-role views (Admin/Reviewer).",
+            "Automated recurring data validation workflows, significantly reducing manual data-entry errors for internal operations."
         ]
     },
     {
@@ -242,11 +212,11 @@ const TIMELINE_DATA = [
         title: "Bachelor of Technology — Computer Science & Engineering",
         subtitle: "Chaibasa Engineering College, Chaibasa, Jharkhand",
         period: "2023 — Expected 2027",
-        description: "Pursuing B.Tech in CSE with a CGPA of 6.98/10 through Semester 4. Coursework covers Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, Software Engineering, Cloud Computing, and Cybersecurity.",
+        description: "Pursuing B.Tech in CSE with strong focus on Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, and Object-Oriented Programming.",
         badge: "Undergraduate Degree",
         highlights: [
-            "Core focus on database systems, algorithm optimization, and software development practices",
-            "Active technical participant in collegiate tech events and programming workshops"
+            "Actively solving algorithmic and data structure problems in Python and C++",
+            "Focused on relational database design, query optimization, and scalable data workflows"
         ]
     },
     {
@@ -258,7 +228,7 @@ const TIMELINE_DATA = [
         badge: "Leadership & Management",
         highlights: [
             "Managed scheduling, promotion, and student volunteer teams for multi-day events",
-            "Helped achieve strong student participation across all departments"
+            "Fostered strong technical engagement and participation across engineering branches"
         ]
     },
     {
@@ -277,7 +247,7 @@ const TIMELINE_DATA = [
         title: "Technical Mentor & Workshop Facilitator",
         subtitle: "Techspire Tech Club",
         period: "Peer Mentorship",
-        description: "Facilitated technical workshops and hands-on coding sessions on Python, Pandas, and basic machine learning workflows for more than 20 students.",
+        description: "Facilitated technical workshops and hands-on coding sessions on Python, Pandas, and basic machine learning workflows for over 20 students.",
         badge: "Community",
         highlights: [
             "Organized interactive sessions on data cleaning, exploratory analysis, and building simple dashboards"
@@ -285,26 +255,26 @@ const TIMELINE_DATA = [
     }
 ];
 
-// Services Data
+// Services / Value Proposition Data
 const SERVICES_DATA = [
     {
         icon: "fas fa-network-wired",
         title: "ETL & Pipeline Engineering",
-        desc: "Designing fast, reliable ETL pipelines that ingest, clean, and validate high-volume operational data (up to ~6,700+ rows/sec) without unnecessary third-party dependencies."
+        desc: "Designing clean, reliable data pipelines that ingest, parse, and validate batch operational data without unnecessary dependencies."
+    },
+    {
+        icon: "fas fa-brain",
+        title: "DSA & Problem Solving",
+        desc: "Applying strong algorithmic foundations in data structures, time complexity analysis, and modular coding to solve computational challenges."
     },
     {
         icon: "fas fa-chart-pie",
         title: "Interactive Dashboards & BI",
-        desc: "Building clean Streamlit and Plotly dashboards with role-based access control, turning raw database records into clear, actionable business metrics."
-    },
-    {
-        icon: "fas fa-brain",
-        title: "Data Analysis & Predictive Modeling",
-        desc: "Performing detailed exploratory analysis, handling outliers through Winsorization, and training machine learning models for customer segmentation and forecasting."
+        desc: "Building clean Streamlit and Plotly dashboards with role-based filtering, turning raw database records into clear, actionable business metrics."
     },
     {
         icon: "fas fa-shield-halved",
         title: "Data Quality & Automation",
-        desc: "Adding automated validation rules, anomaly detection, and secure access controls to ensure your business data remains reliable, clean, and audit-ready."
+        desc: "Developing automated validation rules, anomaly detection, and data reconciliation scripts to keep operational datasets clean and audit-ready."
     }
 ];
