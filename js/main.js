@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     populateUserConfig();
     initTypingEffect();
+    if (typeof renderGitHubSection === 'function') {
+        renderGitHubSection();
+        startGitHubAutoSync();
+    }
     renderServices();
     renderSkills();
     renderProjects("all");

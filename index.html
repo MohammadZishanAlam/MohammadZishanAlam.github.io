@@ -78,6 +78,7 @@
             <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center gap-1 nav-pill-container p-1.5 rounded-full backdrop-blur-md">
                 <a href="#hero" class="nav-link rounded-full">Home</a>
+                <a href="#github-section" class="nav-link rounded-full">GitHub</a>
                 <a href="#about" class="nav-link rounded-full">About</a>
                 <a href="#skills" class="nav-link rounded-full">Skills</a>
                 <a href="#projects" class="nav-link rounded-full">Projects</a>
@@ -107,6 +108,7 @@
         <!-- Mobile Nav Drawer -->
         <div id="mobile-drawer" class="hidden md:hidden mt-3 p-4 glass-card rounded-2xl space-y-2">
             <a href="#hero" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Home</a>
+            <a href="#github-section" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">GitHub Activity</a>
             <a href="#about" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">About</a>
             <a href="#skills" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Skills Matrix</a>
             <a href="#projects" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Projects &amp; Case Studies</a>
@@ -153,14 +155,14 @@
                             <i class="fas fa-diagram-project"></i>
                             <span>View Projects</span>
                         </a>
+                        <a href="#github-section" class="btn-secondary">
+                            <i class="fab fa-github text-electric-cyan"></i>
+                            <span>GitHub Activity</span>
+                        </a>
                         <a href="#contact" class="btn-secondary">
                             <i class="far fa-envelope text-electric-cyan"></i>
                             <span>Get in Touch</span>
                         </a>
-                        <button onclick="openResumeModal()" class="btn-secondary">
-                            <i class="fas fa-file-pdf text-electric-cyan"></i>
-                            <span>Resume</span>
-                        </button>
                     </div>
 
                     <!-- Social Profiles Strip (Bot-Safe Action Triggers) -->
@@ -231,7 +233,65 @@
         </section>
 
         <!-- ==========================================================================
-             2. About Me & Value Propositions
+             2. Live GitHub Repositories & Real-Time Activity (Transparency Section)
+             ========================================================================== -->
+        <section id="github-section" class="py-20 px-4 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                <div>
+                    <div class="badge-cyan mb-2">
+                        <i class="fab fa-github mr-1.5"></i> Open Source &amp; Code Activity
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-theme-primary">
+                        Live <span class="text-gradient">GitHub Repositories</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-theme-muted mt-1 font-medium">
+                        Synced with <strong class="text-electric-cyan font-mono">@MohammadZishanAlam</strong> via GitHub REST API.
+                    </p>
+                    <div class="mt-2">
+                        <span class="mobile-scroll-hint tag-pill text-[11px] font-bold"><i class="fas fa-arrows-left-right mr-1.5 text-electric-cyan"></i>Swipe horizontally to explore repositories</span>
+                    </div>
+                </div>
+
+                <!-- GitHub Switch Form with Validation -->
+                <form id="github-switch-form" class="flex items-center gap-2" onsubmit="event.preventDefault(); const val = document.getElementById('github-username-input').value; renderGitHubSection(val, true);">
+                    <div class="relative">
+                        <i class="fab fa-github absolute left-3 top-1/2 -translate-y-1/2 text-theme-muted text-xs"></i>
+                        <input type="text" id="github-username-input" placeholder="GitHub username" maxlength="39" pattern="^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$" title="Alphanumeric characters or single hyphens" class="custom-input pl-8 py-2 text-xs w-44">
+                    </div>
+                    <button type="submit" class="btn-primary-sm text-xs py-2 font-bold shadow-sm">
+                        <i id="github-refresh-icon" class="fas fa-rotate mr-1"></i><span>Sync</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- GitHub Profile Summary Card -->
+            <div id="github-profile-card" class="mb-6">
+                <!-- Rendered dynamically by github-api.js -->
+            </div>
+
+            <!-- Real-Time GitHub Push & Activity Stream -->
+            <div id="github-activity-feed">
+                <!-- Rendered dynamically by github-api.js -->
+            </div>
+
+            <!-- GitHub Languages Breakdown Bar -->
+            <div id="github-lang-stats">
+                <!-- Rendered dynamically by github-api.js -->
+            </div>
+
+            <!-- Repositories Grid Container (Mobile Horizontal Swipe Support) -->
+            <div id="github-repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 github-repos-mobile-scroll">
+                <!-- Repositories rendered dynamically -->
+            </div>
+            
+            <div class="mt-4 flex items-center justify-between text-xs text-theme-muted font-bold">
+                <span id="github-status-msg" class="flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>Connected to GitHub</span>
+                <span>Sorted by Stars &amp; Recent Activity</span>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             3. About Me & Value Propositions
              ========================================================================== -->
         <section id="about" class="py-20 px-4 lg:px-8 section-alternate">
             <div class="max-w-7xl mx-auto space-y-16">
@@ -299,7 +359,7 @@
         </section>
 
         <!-- ==========================================================================
-             3. Skills Matrix (Mobile Horizontally Scrollable)
+             4. Skills Matrix (Mobile Horizontally Scrollable)
              ========================================================================== -->
         <section id="skills" class="py-20 px-4 lg:px-8 max-w-7xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-8">
@@ -370,7 +430,7 @@
         </section>
 
         <!-- ==========================================================================
-             4. Featured Projects & Case Studies (Mobile Horizontally Scrollable + View All)
+             5. Featured Projects & Case Studies (Mobile Horizontally Scrollable + View All)
              ========================================================================== -->
         <section id="projects" class="py-20 px-4 lg:px-8 section-alternate">
             <div class="max-w-7xl mx-auto">
@@ -416,7 +476,7 @@
         </section>
 
         <!-- ==========================================================================
-             5. Career & Education Timeline
+             6. Career & Education Timeline
              ========================================================================== -->
         <section id="timeline" class="py-20 px-4 lg:px-8 max-w-5xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-12">
@@ -438,7 +498,7 @@
         </section>
 
         <!-- ==========================================================================
-             6. Interactive Contact Section (Bot-Protected Action Triggers)
+             7. Interactive Contact Section (Bot-Protected Action Triggers)
              ========================================================================== -->
         <section id="contact" class="py-20 px-4 lg:px-8 section-alternate">
             <div class="max-w-7xl mx-auto">
@@ -795,6 +855,7 @@
     <!-- Custom JavaScript Application Modules -->
     <script src="js/config.js"></script>
     <script src="js/projects-data.js"></script>
+    <script src="js/github-api.js"></script>
     <script src="js/particles.js"></script>
     <script src="js/main.js"></script>
 
