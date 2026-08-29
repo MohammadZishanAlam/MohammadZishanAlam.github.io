@@ -1,0 +1,670 @@
+/* ==========================================================================
+   Electric Blue & Cyber-Clean Portfolio Design System
+   Mohammad Zishan Alam — Data & Pipeline Engineer
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* --- CSS Variables & Dual Theme Engine --- */
+:root {
+    /* DARK THEME (Default - Glowing Cyber Aesthetic) */
+    --bg-primary: #080c14;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #0d1527 0%, #080c14 70%);
+    --bg-secondary: #0f172a;
+    --bg-tertiary: #1e293b;
+    --section-alt: rgba(15, 23, 42, 0.5);
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --card-elevated: rgba(30, 41, 59, 0.85);
+    --card-inner: rgba(11, 17, 32, 0.7);
+    --border-color: rgba(255, 255, 255, 0.09);
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-glow: rgba(0, 242, 254, 0.4);
+
+    /* Electric Cyan & Blue Palette in Dark Mode */
+    --electric-cyan: #00f2fe;
+    --electric-blue: #4facfe;
+    --blue-accent: #3b82f6;
+    --neon-glow: 0 0 25px rgba(0, 242, 254, 0.35);
+    --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+
+    /* Typography in Dark Mode */
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-accent: #00f2fe;
+
+    /* Chips & Badges */
+    --badge-bg: rgba(0, 242, 254, 0.12);
+    --badge-text: #00f2fe;
+    --badge-border: rgba(0, 242, 254, 0.3);
+    --pill-bg: rgba(255, 255, 255, 0.06);
+    --pill-text: #cbd5e1;
+    --pill-border: rgba(255, 255, 255, 0.1);
+    --tech-bg: #0b1120;
+    --tech-text: #94a3b8;
+
+    /* Navbar & Modal */
+    --nav-bg: rgba(15, 23, 42, 0.75);
+    --modal-bg: #0b1120;
+    --modal-card: rgba(15, 23, 42, 0.95);
+    --orb-opacity: 0.25;
+
+    /* Resume Sheet in Dark Mode */
+    --resume-bg: #0d1322;
+    --resume-paper-border: rgba(0, 242, 254, 0.25);
+    --resume-text-title: #ffffff;
+    --resume-text-body: #cbd5e1;
+    --resume-rule: rgba(0, 242, 254, 0.3);
+
+    /* Fonts & Motion */
+    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+    /* LIGHT THEME (Deep Navy, Midnight Cobalt & Soothing Warm-Slate Gradients) */
+    --bg-primary: #e6edf5;
+    --bg-gradient: linear-gradient(145deg, #e4ecf6 0%, #dbe5f2 50%, #d4e0ee 100%);
+    --bg-secondary: #ecf2f9;
+    --bg-tertiary: #d8e3f0;
+    --section-alt: linear-gradient(180deg, rgba(218, 229, 242, 0.6) 0%, rgba(209, 222, 238, 0.75) 100%);
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --card-elevated: rgba(255, 255, 255, 0.95);
+    --card-inner: rgba(228, 238, 248, 0.7);
+    --border-color: rgba(100, 116, 139, 0.28);
+    --border-subtle: rgba(100, 116, 139, 0.18);
+    --border-glow: rgba(2, 69, 122, 0.45);
+
+    /* Rich Deep Navy / Cobalt Palette in Light Mode */
+    --electric-cyan: #02457a;
+    --electric-blue: #1e3a8a;
+    --blue-accent: #0f2d59;
+    --neon-glow: 0 6px 20px rgba(2, 69, 122, 0.14);
+    --card-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 3px 8px -2px rgba(15, 23, 42, 0.04);
+
+    /* Crisp High-Contrast Typography */
+    --text-primary: #090d16;
+    --text-secondary: #1e293b;
+    --text-muted: #475569;
+    --text-accent: #02457a;
+
+    /* Chips & Badges */
+    --badge-bg: rgba(2, 69, 122, 0.09);
+    --badge-text: #02457a;
+    --badge-border: rgba(2, 69, 122, 0.28);
+    --pill-bg: rgba(255, 255, 255, 0.85);
+    --pill-text: #0f172a;
+    --pill-border: rgba(100, 116, 139, 0.3);
+    --tech-bg: rgba(255, 255, 255, 0.9);
+    --tech-text: #0f172a;
+
+    /* Navbar & Modal */
+    --nav-bg: rgba(235, 242, 250, 0.88);
+    --modal-bg: #e6edf5;
+    --modal-card: rgba(255, 255, 255, 0.98);
+    --orb-opacity: 0.06;
+
+    /* Resume Sheet in Light Mode */
+    --resume-bg: #ffffff;
+    --resume-paper-border: #cbd5e1;
+    --resume-text-title: #090d16;
+    --resume-text-body: #1e293b;
+    --resume-rule: #02457a;
+}
+
+/* --- Global Reset & Base Setup (Full Native Inertia Scrolling) --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-primary);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 4px;
+    border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--electric-cyan);
+}
+
+/* Selection Color */
+::selection {
+    background: rgba(0, 242, 254, 0.3);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] ::selection {
+    background: rgba(2, 69, 122, 0.25);
+    color: #090d16;
+}
+
+/* --- Glassmorphism & UI Card Foundations --- */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: var(--neon-glow);
+}
+
+.section-alternate {
+    background: var(--section-alt);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-inner-box {
+    background: var(--card-inner);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+}
+
+.border-glow {
+    border-color: var(--border-glow);
+}
+
+/* --- Gradient Text & Colors --- */
+.text-gradient {
+    background: linear-gradient(135deg, var(--electric-cyan) 0%, var(--electric-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-theme-primary {
+    color: var(--text-primary) !important;
+}
+
+.text-theme-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-theme-muted {
+    color: var(--text-muted) !important;
+}
+
+.text-electric-cyan {
+    color: var(--electric-cyan);
+}
+
+.bg-electric-cyan {
+    background-color: var(--electric-cyan);
+}
+
+.text-electric-blue {
+    color: var(--electric-blue);
+}
+
+/* --- Navigation Bar --- */
+#main-navbar {
+    background: transparent;
+    transition: var(--transition-smooth);
+}
+
+.navbar-scrolled {
+    background: var(--nav-bg) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.nav-pill-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+}
+
+.nav-link {
+    position: relative;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+    padding: 0.45rem 0.85rem;
+    text-decoration: none;
+}
+
+.nav-link:hover, .nav-link.active-nav {
+    color: var(--electric-cyan);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--electric-cyan), var(--electric-blue));
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active-nav::after {
+    width: 70%;
+    left: 15%;
+}
+
+/* --- Badges & Chips --- */
+.badge-cyan {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1px solid var(--badge-border);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+}
+
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.65rem;
+    border-radius: 9999px;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    border: 1px solid var(--pill-border);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.5rem;
+    background: var(--tech-bg);
+    color: var(--tech-text);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, var(--electric-cyan) 0%, var(--electric-blue) 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 69, 122, 0.35);
+    transition: var(--transition-smooth);
+}
+
+[data-theme="dark"] .btn-primary {
+    color: #080c14;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(2, 69, 122, 0.45);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    box-shadow: 0 6px 25px rgba(0, 242, 254, 0.55);
+}
+
+.btn-primary-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.95rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--electric-cyan) 0%, var(--electric-blue) 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+[data-theme="dark"] .btn-primary-sm {
+    color: #080c14;
+}
+
+.btn-primary-sm:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 0.75rem;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+    border-color: var(--electric-cyan);
+    color: var(--electric-cyan);
+    transform: translateY(-2px);
+}
+
+.btn-secondary-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.95rem;
+    border-radius: 0.5rem;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-secondary-sm:hover {
+    border-color: var(--electric-cyan);
+    color: var(--electric-cyan);
+}
+
+/* --- Filter Tabs --- */
+.project-filter-btn {
+    padding: 0.45rem 1.1rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.project-filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-glow);
+}
+
+.project-filter-btn.active-filter {
+    background: linear-gradient(135deg, var(--electric-cyan), var(--electric-blue));
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 2px 14px rgba(2, 69, 122, 0.35);
+}
+
+[data-theme="dark"] .project-filter-btn.active-filter {
+    color: #080c14;
+    box-shadow: 0 2px 14px rgba(0, 242, 254, 0.35);
+}
+
+/* --- Input Fields --- */
+.custom-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--card-inner);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-family: var(--font-main);
+    transition: var(--transition-smooth);
+}
+
+.custom-input:focus {
+    outline: none;
+    background: var(--card-bg);
+    border-color: var(--electric-cyan);
+    box-shadow: 0 0 15px rgba(2, 69, 122, 0.2);
+}
+
+[data-theme="dark"] .custom-input:focus {
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
+/* Honeypot Anti-Spam Field (Hidden from real users) */
+.security-trap {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    tabindex: -1 !important;
+}
+
+/* --- Modal Viewport System --- */
+.modal-window {
+    background: var(--modal-card) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
+}
+
+/* ==========================================================================
+   LaTeX / Ivy-League Style Professional Resume Sheet
+   Strict 1-Page Layout Standard
+   ========================================================================== */
+.resume-paper {
+    background: var(--resume-bg);
+    border: 1px solid var(--resume-paper-border);
+    box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.3);
+    border-radius: 0.75rem;
+    padding: 1.8rem 1.8rem;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--resume-text-body);
+    font-size: 0.825rem;
+    line-height: 1.38;
+}
+
+.resume-header-title {
+    color: var(--resume-text-title);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+}
+
+.resume-section-heading {
+    color: var(--resume-text-title);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    font-size: 0.785rem;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 0.2rem;
+    margin-top: 0.65rem;
+    margin-bottom: 0.45rem;
+    border-bottom: 1.2px solid var(--resume-rule);
+}
+
+.resume-bullet-point {
+    position: relative;
+    padding-left: 1.15rem;
+    margin-bottom: 0.28rem;
+    font-size: 0.785rem;
+    line-height: 1.38;
+}
+
+.resume-bullet-point::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--electric-cyan);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   Strict 1-Page Print Engine (@media print)
+   ========================================================================== */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 7mm 9mm;
+    }
+
+    #main-navbar,
+    main,
+    footer,
+    .glow-orb,
+    canvas,
+    .no-print,
+    #modal-backdrop,
+    #modal-close-btn,
+    .modal-animate-in > .no-print {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    #resume-modal {
+        position: static !important;
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        page-break-after: avoid !important;
+    }
+
+    #resume-modal > div:first-child {
+        display: none !important;
+    }
+
+    .modal-window {
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        overflow: hidden !important;
+        page-break-after: avoid !important;
+    }
+
+    .resume-paper {
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        color: #000000 !important;
+        font-size: 8.3pt !important;
+        line-height: 1.28 !important;
+        page-break-after: avoid !important;
+    }
+
+    .resume-header-title {
+        color: #000000 !important;
+        font-size: 14pt !important;
+        margin-bottom: 1pt !important;
+    }
+
+    .resume-section-heading {
+        color: #000000 !important;
+        border-bottom: 1pt solid #000000 !important;
+        font-size: 8.8pt !important;
+        margin-top: 5pt !important;
+        margin-bottom: 2.5pt !important;
+        padding-bottom: 1pt !important;
+    }
+
+    .resume-bullet-point {
+        color: #1a1a1a !important;
+        font-size: 7.9pt !important;
+        line-height: 1.25 !important;
+        margin-bottom: 1.5pt !important;
+    }
+
+    .resume-bullet-point::before {
+        color: #000000 !important;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: #000000 !important;
+    }
+}
+
+/* --- Loading Spinner --- */
+.loader {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(2, 69, 122, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--electric-cyan);
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

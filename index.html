@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Zishan Alam | Data &amp; Pipeline Engineer</title>
+    <meta name="description" content="Portfolio of Mohammad Zishan Alam — Data & Pipeline Engineer specializing in ETL Pipeline Design, Data Analysis, and Predictive Modeling with enterprise experience at MECON Limited.">
+    <meta name="author" content="Mohammad Zishan Alam">
+
+    <!-- Security Meta Tags -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        'electric-cyan': 'var(--electric-cyan)',
+                        'electric-blue': 'var(--electric-blue)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Style Sheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="relative min-h-screen">
+
+    <!-- Global Full-Page Interactive Particle Canvas -->
+    <canvas id="global-particles" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Background Ambient Glowing Orbs -->
+    <div class="glow-orb orb-cyan -top-20 -left-20"></div>
+    <div class="glow-orb orb-blue top-1/3 -right-20"></div>
+    <div class="glow-orb orb-cyan bottom-1/4 -left-20"></div>
+
+    <!-- ==========================================================================
+         Navigation Bar
+         ========================================================================== -->
+    <header id="main-navbar" class="fixed top-0 left-0 right-0 z-40 px-4 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-2.5 group text-decoration-none">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-black text-lg shadow-[0_0_15px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform flex-shrink-0">
+                    &lt;/&gt;
+                </div>
+                <div>
+                    <span class="font-extrabold text-base tracking-tight text-theme-primary group-hover:text-electric-cyan transition-colors">
+                        <span class="user-name">Mohammad Zishan Alam</span>
+                    </span>
+                    <span class="block text-[10px] text-theme-muted font-mono">Data &amp; Pipeline Engineer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-1 nav-pill-container p-1.5 rounded-full backdrop-blur-md">
+                <a href="#hero" class="nav-link rounded-full">Home</a>
+                <a href="#about" class="nav-link rounded-full">About</a>
+                <a href="#github-section" class="nav-link rounded-full">GitHub</a>
+                <a href="#skills" class="nav-link rounded-full">Skills</a>
+                <a href="#projects" class="nav-link rounded-full">Projects</a>
+                <a href="#timeline" class="nav-link rounded-full">Timeline</a>
+                <a href="#contact" class="nav-link rounded-full">Contact</a>
+            </nav>
+
+            <!-- Action Controls: Theme & Resume & Mobile Toggle -->
+            <div class="flex items-center gap-3">
+                <!-- Theme Switcher Button -->
+                <button id="theme-toggle" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-sm transition-all hover:scale-105" title="Toggle Dark / Light Theme" aria-label="Toggle Theme">
+                    <i id="theme-icon" class="fas fa-sun text-amber-400"></i>
+                </button>
+
+                <!-- Quick Resume Button -->
+                <button onclick="openResumeModal()" class="hidden sm:inline-flex btn-primary-sm text-xs font-bold">
+                    <i class="fas fa-file-arrow-down mr-1.5"></i>Resume
+                </button>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-theme-primary" aria-label="Open Navigation Menu">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-drawer" class="hidden md:hidden mt-3 p-4 glass-card rounded-2xl space-y-2">
+            <a href="#hero" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Home</a>
+            <a href="#about" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">About</a>
+            <a href="#github-section" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">GitHub Activity</a>
+            <a href="#skills" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Skills Matrix</a>
+            <a href="#projects" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Projects &amp; Case Studies</a>
+            <a href="#timeline" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Experience &amp; Education</a>
+            <a href="#contact" class="mobile-nav-link block px-4 py-2 rounded-lg text-sm text-theme-secondary hover:text-electric-cyan">Contact</a>
+            <div class="pt-2 border-t border-slate-200 dark:border-slate-800">
+                <button onclick="openResumeModal()" class="w-full btn-primary-sm py-2 text-center text-xs font-bold">
+                    <i class="fas fa-file-pdf mr-1.5"></i>View / Print Resume
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-20">
+        <!-- ==========================================================================
+             1. Hero Section (Stable & Layout-Shift Free)
+             ========================================================================== -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center px-4 lg:px-8 py-14 overflow-hidden">
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                <!-- Hero Left Column: Intro & Headline -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 badge-cyan">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        <span class="user-availability">Open to work and collaborate</span>
+                    </div>
+
+                    <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-theme-primary tracking-tight leading-tight">
+                        Hi, I'm <span class="text-gradient user-name">Mohammad Zishan Alam</span><br>
+                        <span class="text-2xl sm:text-3xl lg:text-4xl text-theme-secondary font-semibold">
+                            Specializing in <br class="sm:hidden">
+                            <span class="inline-block min-h-[1.4em] align-bottom">
+                                <span class="text-electric-cyan font-mono font-bold" id="typing-text">Data &amp; Pipeline Engineer</span><span class="cursor-blink"></span>
+                            </span>
+                        </span>
+                    </h1>
+
+                    <p class="user-bio text-sm sm:text-base text-theme-secondary max-w-2xl leading-relaxed mx-auto lg:mx-0 font-medium">
+                        Computer Science undergraduate with practical experience building high-throughput ETL pipelines, internal compliance dashboards, and predictive models during my internship at MECON Limited. Designed a 100,000+ record ETL pipeline that processes data at ~6,700 rows per second (&lt;15 seconds total) and developed an RBAC-secured compliance tool used across departments.
+                    </p>
+
+                    <!-- Hero Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#projects" class="btn-primary">
+                            <i class="fas fa-diagram-project"></i>
+                            <span>View Featured Work</span>
+                        </a>
+                        <a href="#github-section" class="btn-secondary">
+                            <i class="fab fa-github text-electric-cyan"></i>
+                            <span>Live GitHub Activity</span>
+                        </a>
+                        <a href="#contact" class="btn-secondary">
+                            <i class="far fa-envelope text-electric-cyan"></i>
+                            <span>Contact Me</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Profiles Strip -->
+                    <div class="flex items-center justify-center lg:justify-start gap-3 pt-2">
+                        <span class="text-xs text-theme-muted uppercase font-mono mr-1 font-bold">Connect:</span>
+                        <a id="github-hero-link" href="https://github.com/MohammadZishanAlam" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all" title="GitHub: @MohammadZishanAlam">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a id="linkedin-link" href="https://linkedin.com/in/mohammad-zishan-alam" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all" title="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:alamzishan07@gmail.com?subject=Opportunity%20/%20Project%20Inquiry%20-%20Mohammad%20Zishan%20Alam" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all" title="Send Email">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                        <a href="tel:+917859031586" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all" title="Call / WhatsApp">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right Column: Focus Card & Production Stats Grid -->
+                <div class="lg:col-span-5 space-y-6">
+                    <!-- Profile Card -->
+                    <div class="glass-card p-6 rounded-3xl relative overflow-hidden animate-float">
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="relative flex-shrink-0">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 p-0.5 shadow-[0_0_20px_rgba(0,242,254,0.4)]">
+                                    <div class="w-full h-full rounded-2xl card-inner-box flex items-center justify-center text-2xl font-bold text-electric-cyan">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                </div>
+                                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-900" title="Active"></span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base text-theme-primary user-name">Mohammad Zishan Alam</h3>
+                                <p class="text-xs text-electric-cyan font-mono font-bold user-title">Data &amp; Pipeline Engineer</p>
+                                <p class="text-[11px] text-theme-muted font-semibold"><i class="fas fa-location-dot mr-1 text-electric-cyan"></i><span class="user-location">Ranchi, Jharkhand, India</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Highlights Box -->
+                        <div class="space-y-2.5 p-3.5 rounded-2xl card-inner-box text-xs">
+                            <div class="flex items-center justify-between text-theme-secondary">
+                                <span class="flex items-center gap-2"><i class="fas fa-building text-electric-cyan"></i>Work Experience</span>
+                                <span class="font-bold text-theme-primary">MECON Limited (ETL &amp; BI)</span>
+                            </div>
+                            <div class="flex items-center justify-between text-theme-secondary">
+                                <span class="flex items-center gap-2"><i class="fas fa-graduation-cap text-electric-cyan"></i>Education</span>
+                                <span class="font-bold text-theme-primary">B.Tech CSE (Expected 2027)</span>
+                            </div>
+                            <div class="flex items-center justify-between text-theme-secondary">
+                                <span class="flex items-center gap-2"><i class="fas fa-bolt text-electric-cyan"></i>Core Stack</span>
+                                <span class="font-bold text-electric-cyan font-mono">Python, SQL, Pandas, ETL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4x Stats Metrics Grid -->
+                    <div id="hero-stats-container" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3">
+                        <!-- Rendered dynamically by main.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             2. Live GitHub Repositories & API Integration
+             ========================================================================== -->
+        <section id="github-section" class="py-20 px-4 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                <div>
+                    <div class="badge-cyan mb-2">
+                        <i class="fab fa-github mr-1.5"></i> Open Source &amp; Code Activity
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-theme-primary">
+                        Live <span class="text-gradient">GitHub Repositories</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-theme-muted mt-1 font-medium">
+                        Synced with <strong class="text-electric-cyan">@MohammadZishanAlam</strong> via GitHub REST API.
+                    </p>
+                </div>
+
+                <!-- GitHub Switch Form with Validation -->
+                <form id="github-switch-form" class="flex items-center gap-2">
+                    <div class="relative">
+                        <i class="fab fa-github absolute left-3 top-1/2 -translate-y-1/2 text-theme-muted text-xs"></i>
+                        <input type="text" id="github-username-input" placeholder="GitHub username" maxlength="39" pattern="^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$" title="Alphanumeric characters or single hyphens" class="custom-input pl-8 py-2 text-xs w-44">
+                    </div>
+                    <button type="submit" class="btn-primary-sm text-xs py-2 font-bold">
+                        <span>Sync</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- GitHub Profile Summary Card -->
+            <div id="github-profile-card" class="mb-6">
+                <!-- Rendered dynamically by github-api.js -->
+            </div>
+
+            <!-- GitHub Languages Breakdown Bar -->
+            <div id="github-lang-stats">
+                <!-- Rendered dynamically by github-api.js -->
+            </div>
+
+            <!-- Repositories Grid Container -->
+            <div id="github-repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Repositories rendered dynamically -->
+            </div>
+            
+            <div class="mt-4 flex items-center justify-between text-xs text-theme-muted font-bold">
+                <span id="github-status-msg">Connected to GitHub</span>
+                <span>Sorted by Stars &amp; Recent Activity</span>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             3. About Me & Value Propositions
+             ========================================================================== -->
+        <section id="about" class="py-20 px-4 lg:px-8 section-alternate">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="badge-cyan mb-2">
+                            <i class="fas fa-user-gear mr-1.5"></i>Engineering Profile
+                        </div>
+                        <h2 class="text-3xl font-extrabold text-theme-primary leading-tight">
+                            Building Practical Data Pipelines &amp; <span class="text-gradient">Analytical Systems</span>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-theme-secondary leading-relaxed font-medium">
+                            I am a Computer Science student at Chaibasa Engineering College with practical experience building ETL pipelines, automated compliance workflows, and analytics platforms.
+                        </p>
+                        <p class="text-xs sm:text-sm text-theme-secondary leading-relaxed font-medium">
+                            During my software and data engineering internship at <strong>MECON Limited (Ranchi)</strong>, I independently delivered 3 desktop data applications. Most notably, I engineered a zero-dependency ETL pipeline that processes and reconciles over 100,000 SAP records at ~6,700 rows per second, reducing daily financial reporting time from hours to under 15 seconds.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <button onclick="openResumeModal()" class="btn-primary">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Inspect Full Resume</span>
+                            </button>
+                            <a href="#contact" class="btn-secondary">
+                                <i class="fas fa-handshake"></i>
+                                <span>Get in Touch</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Core Value Grid -->
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4" id="services-grid">
+                        <!-- Rendered dynamically by main.js from SERVICES_DATA -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             4. Skills Matrix
+             ========================================================================== -->
+        <section id="skills" class="py-20 px-4 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="badge-cyan mb-2">
+                    <i class="fas fa-layer-group mr-1.5"></i>Technical Competencies
+                </div>
+                <h2 class="text-3xl font-extrabold text-theme-primary">
+                    Core Skills &amp; <span class="text-gradient">Technologies</span>
+                </h2>
+                <p class="text-xs sm:text-sm text-theme-muted mt-2 font-medium">
+                    Applied technical capabilities in ETL Architecture, Statistical Modeling, Relational Databases, and Business Intelligence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Data Analysis & Modeling -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-cyan-600">
+                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                        <i class="fas fa-magnifying-glass-chart text-electric-cyan"></i> Data Analysis &amp; Modeling
+                    </h3>
+                    <div class="space-y-3" id="skills-data-analysis">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Data Engineering -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-blue-600">
+                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                        <i class="fas fa-network-wired text-electric-blue"></i> Data Engineering
+                    </h3>
+                    <div class="space-y-3" id="skills-data-engineering">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- BI & Visualization -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-indigo-600">
+                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                        <i class="fas fa-chart-pie text-indigo-600"></i> BI &amp; Visualization
+                    </h3>
+                    <div class="space-y-3" id="skills-bi-visualization">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Languages & Tools -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-teal-600">
+                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                        <i class="fas fa-code text-teal-600"></i> Languages &amp; Tools
+                    </h3>
+                    <div class="space-y-3" id="skills-languages-tools">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             5. Featured Projects & Case Studies
+             ========================================================================== -->
+        <section id="projects" class="py-20 px-4 lg:px-8 section-alternate">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                    <div>
+                        <div class="badge-cyan mb-2">
+                            <i class="fas fa-diagram-project mr-1.5"></i>Proof of Work
+                        </div>
+                        <h2 class="text-3xl font-extrabold text-theme-primary">
+                            Featured <span class="text-gradient">Projects &amp; Case Studies</span>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-theme-muted mt-1 font-medium">
+                            Enterprise ETL tools, compliance monitoring systems, and predictive classification models.
+                        </p>
+                    </div>
+
+                    <!-- Category Filter Tabs -->
+                    <div class="project-filter-bar flex flex-wrap items-center gap-2">
+                        <button class="project-filter-btn active-filter" data-category="all">All Projects</button>
+                        <button class="project-filter-btn" data-category="engineering">ETL &amp; Engineering</button>
+                        <button class="project-filter-btn" data-category="analytics">Analytics &amp; BI</button>
+                        <button class="project-filter-btn" data-category="ml">Machine Learning</button>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 projects-grid">
+                    <!-- Rendered dynamically from PROJECTS_DATA -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             6. Career & Education Timeline
+             ========================================================================== -->
+        <section id="timeline" class="py-20 px-4 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <div class="badge-cyan mb-2">
+                    <i class="fas fa-graduation-cap mr-1.5"></i>Academic &amp; Professional Journey
+                </div>
+                <h2 class="text-3xl font-extrabold text-theme-primary">
+                    Experience &amp; <span class="text-gradient">Education Roadmap</span>
+                </h2>
+                <p class="text-xs sm:text-sm text-theme-muted mt-2 font-medium">
+                    MECON Limited engineering internship, B.Tech CSE degree, leadership programs, and technical mentorship.
+                </p>
+            </div>
+
+            <!-- Timeline Container -->
+            <div id="timeline-container" class="space-y-2">
+                <!-- Rendered dynamically from TIMELINE_DATA -->
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             7. Interactive Contact Section (Direct Mailto Link)
+             ========================================================================== -->
+        <section id="contact" class="py-20 px-4 lg:px-8 section-alternate">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <div class="badge-cyan mb-2">
+                        <i class="fas fa-paper-plane mr-1.5"></i>Get in Touch
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-theme-primary">
+                        Let's Discuss <span class="text-gradient">Opportunities &amp; Projects</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-theme-muted mt-2 font-medium">
+                        I am open for full-time opportunities, graduate engineering roles, and data engineering internships.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Left: Contact Information Cards -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="glass-card p-6 rounded-2xl space-y-4 border-glow">
+                            <h3 class="text-base font-bold text-theme-primary mb-2">Direct Contact Channels</h3>
+
+                            <!-- Email Card with Direct Mailto Link & Safe Copy Button -->
+                            <div class="p-3.5 rounded-xl card-inner-box flex items-center justify-between gap-3 group/email transition-all hover:border-cyan-600/50">
+                                <a href="mailto:alamzishan07@gmail.com?subject=Opportunity%20/%20Project%20Inquiry%20-%20Mohammad%20Zishan%20Alam" class="flex items-center gap-3 overflow-hidden flex-1 no-underline" title="Click to compose a new email">
+                                    <div class="w-10 h-10 rounded-lg bg-cyan-500/15 text-electric-cyan flex items-center justify-center text-base flex-shrink-0 group-hover/email:scale-105 transition-transform">
+                                        <i class="far fa-envelope"></i>
+                                    </div>
+                                    <div class="overflow-hidden">
+                                        <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Email Address</div>
+                                        <span class="user-email text-xs font-bold text-theme-primary group-hover/email:text-electric-cyan truncate block transition-colors">alamzishan07@gmail.com</span>
+                                    </div>
+                                </a>
+                                <button id="copy-email-btn" type="button" class="p-2 rounded-lg card-inner-box hover:bg-cyan-500/20 text-theme-secondary hover:text-electric-cyan transition-colors text-xs flex-shrink-0" title="Copy email address to clipboard">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+
+                            <!-- Phone Card -->
+                            <div class="p-3.5 rounded-xl card-inner-box flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500/15 text-electric-blue flex items-center justify-center text-base flex-shrink-0">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Phone Number</div>
+                                    <a href="tel:+917859031586" class="user-phone text-xs font-bold text-theme-primary hover:text-electric-cyan">+91 7859031586</a>
+                                </div>
+                            </div>
+
+                            <!-- Location Card -->
+                            <div class="p-3.5 rounded-xl card-inner-box flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-500/15 text-indigo-500 flex items-center justify-center text-base flex-shrink-0">
+                                    <i class="fas fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Location</div>
+                                    <div class="user-location text-xs font-bold text-theme-primary">Ranchi, Jharkhand, India</div>
+                                </div>
+                            </div>
+
+                            <!-- Current Status Card -->
+                            <div class="p-3.5 rounded-xl card-inner-box flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-base flex-shrink-0">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Current Status</div>
+                                    <div class="user-availability text-xs font-bold text-emerald-600 dark:text-emerald-400">Open to work and collaborate</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Quick Links -->
+                        <div class="glass-card p-4 rounded-2xl flex items-center justify-around">
+                            <a id="github-link" href="https://github.com/MohammadZishanAlam" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1 text-theme-muted hover:text-electric-cyan text-xs font-semibold transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a id="linkedin-link-2" href="https://linkedin.com/in/mohammad-zishan-alam" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1 text-theme-muted hover:text-electric-cyan text-xs font-semibold transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="mailto:alamzishan07@gmail.com?subject=Opportunity%20/%20Project%20Inquiry%20-%20Mohammad%20Zishan%20Alam" class="flex flex-col items-center gap-1 text-theme-muted hover:text-electric-cyan text-xs font-semibold transition-colors">
+                                <i class="far fa-envelope text-xl"></i>
+                                <span>Email</span>
+                            </a>
+                            <a href="tel:+917859031586" class="flex flex-col items-center gap-1 text-theme-muted hover:text-electric-cyan text-xs font-semibold transition-colors">
+                                <i class="fas fa-phone text-xl"></i>
+                                <span>Call</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Contact Form (Security Hardened) -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card p-6 sm:p-8 rounded-3xl">
+                            <h3 class="text-xl font-bold text-theme-primary mb-2">Send a Message</h3>
+                            <p class="text-xs text-theme-muted mb-6 font-medium">Have an opportunity, interview invitation, or question? Send a message below.</p>
+
+                            <form id="contact-form" class="space-y-4" novalidate>
+                                <!-- Anti-Spam Honeypot Field -->
+                                <input type="text" id="contact-trap" name="contact_trap" class="security-trap" tabindex="-1" autocomplete="off">
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="contact-name" class="block text-xs font-bold text-theme-secondary mb-1.5">Your Full Name *</label>
+                                        <input type="text" id="contact-name" required maxlength="100" placeholder="e.g. Recruiter / Collaborator" class="custom-input">
+                                    </div>
+                                    <div>
+                                        <label for="contact-email" class="block text-xs font-bold text-theme-secondary mb-1.5">Your Email Address *</label>
+                                        <input type="email" id="contact-email" required maxlength="100" placeholder="e.g. name@company.com" class="custom-input">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="contact-subject" class="block text-xs font-bold text-theme-secondary mb-1.5">Subject / Opportunity</label>
+                                    <input type="text" id="contact-subject" maxlength="150" placeholder="e.g. Data Engineer Role / Project Discussion" class="custom-input">
+                                </div>
+
+                                <div>
+                                    <label for="contact-message" class="block text-xs font-bold text-theme-secondary mb-1.5">Your Message *</label>
+                                    <textarea id="contact-message" required maxlength="2500" rows="4" placeholder="Share job details, questions, or project requirements..." class="custom-input resize-none"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn-primary w-full py-3">
+                                    <span>Send Message</span>
+                                    <i class="fas fa-paper-plane text-xs ml-2"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+         Footer
+         ========================================================================== -->
+    <footer class="py-8 px-4 lg:px-8 border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950 text-center relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-theme-muted font-medium">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-electric-cyan animate-pulse"></span>
+                <span>Designed &amp; Engineered by <strong class="text-theme-primary user-name">Mohammad Zishan Alam</strong></span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#hero" class="hover:text-electric-cyan transition-colors">Back to Top <i class="fas fa-arrow-up ml-1 text-[10px]"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         Case Study Modal Pop-up
+         ========================================================================== -->
+    <div id="case-study-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-backdrop" class="fixed inset-0 bg-slate-950/75 backdrop-blur-md transition-opacity"></div>
+        <div class="relative modal-window w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-8 z-10 modal-animate-in shadow-2xl">
+            <button id="modal-close-btn" class="absolute top-5 right-5 w-8 h-8 rounded-full card-inner-box text-theme-secondary hover:text-electric-cyan flex items-center justify-center transition-colors text-sm" aria-label="Close Modal">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <div id="modal-body-content">
+                <!-- Injected dynamically when clicking "Case Study" -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         Executive LaTeX-Style Resume Modal (Strict 1-Page Standard)
+         ========================================================================== -->
+    <div id="resume-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 hidden">
+        <div onclick="closeResumeModal()" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity"></div>
+        
+        <div class="relative modal-window w-full max-w-4xl max-h-[94vh] overflow-y-auto rounded-3xl p-4 sm:p-8 z-10 modal-animate-in shadow-2xl">
+            <!-- Modal Header Actions -->
+            <div class="no-print flex items-center justify-between pb-4 mb-4 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="badge-cyan text-xs font-bold"><i class="fas fa-file-pdf mr-1.5"></i>Official 1-Page Resume</span>
+                </div>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="downloadResumePDF()" class="btn-primary-sm text-xs font-bold shadow-md">
+                        <i class="fas fa-download mr-1.5"></i>Save 1-Page PDF
+                    </button>
+                    <button onclick="closeResumeModal()" class="w-8 h-8 rounded-full card-inner-box text-theme-secondary hover:text-electric-cyan flex items-center justify-center transition-colors text-sm" aria-label="Close Resume Modal">
+                        <i class="fas fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Authentic LaTeX-Style Resume Paper Sheet -->
+            <div id="printable-resume" class="resume-paper">
+                <!-- Resume Top Header -->
+                <div class="text-center pb-3 mb-3 border-b-2 border-slate-300 dark:border-slate-800">
+                    <h1 class="resume-header-title text-2xl font-extrabold tracking-wider mb-1">
+                        MOHAMMAD ZISHAN ALAM
+                    </h1>
+                    <p class="text-xs font-bold text-electric-cyan font-mono tracking-wide mb-1.5">
+                        Data Analysis &bull; ETL &amp; Pipeline Engineering &bull; Predictive Modeling
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-0.5 text-xs text-theme-secondary font-medium">
+                        <span><i class="fas fa-location-dot mr-1 text-electric-cyan"></i>Ranchi, Jharkhand</span>
+                        <span>&bull;</span>
+                        <a href="mailto:alamzishan07@gmail.com?subject=Opportunity%20/%20Project%20Inquiry%20-%20Mohammad%20Zishan%20Alam" class="hover:text-electric-cyan font-bold"><i class="far fa-envelope mr-1 text-electric-cyan"></i>alamzishan07@gmail.com</a>
+                        <span>&bull;</span>
+                        <a href="tel:+917859031586" class="hover:text-electric-cyan font-bold"><i class="fas fa-phone mr-1 text-electric-cyan"></i>+91 7859031586</a>
+                        <span>&bull;</span>
+                        <a href="https://linkedin.com/in/mohammad-zishan-alam" target="_blank" rel="noopener noreferrer" class="hover:text-electric-cyan font-bold"><i class="fab fa-linkedin mr-1 text-electric-cyan"></i>in/mohammad-zishan-alam</a>
+                        <span>&bull;</span>
+                        <a href="https://github.com/MohammadZishanAlam" target="_blank" rel="noopener noreferrer" class="hover:text-electric-cyan font-bold"><i class="fab fa-github mr-1 text-electric-cyan"></i>gh/MohammadZishanAlam</a>
+                    </div>
+                </div>
+
+                <!-- 1. Professional Summary -->
+                <div class="mb-3.5">
+                    <h2 class="resume-section-heading">PROFESSIONAL SUMMARY</h2>
+                    <p class="text-xs text-theme-secondary leading-relaxed text-justify font-medium">
+                        Data &amp; Pipeline Engineer with hands-on experience building production ETL pipelines, compliance dashboards, and predictive models during my internship at MECON Limited. Engineered data pipelines that process over 100,000 SAP records at ~6,700 rows per second, cutting finance report generation from hours of manual work to under 15 seconds. Automated company-wide compliance tracking, giving HR and finance teams immediate, role-secured access to critical records. Proficient in Python, SQL, and Pandas, with a strong focus on turning messy operational data into clean, actionable business intelligence.
+                    </p>
+                </div>
+
+                <!-- 2. Technical Skills -->
+                <div class="mb-3.5">
+                    <h2 class="resume-section-heading">TECHNICAL SKILLS</h2>
+                    <div class="space-y-1 text-xs text-theme-secondary font-medium">
+                        <div><strong class="text-theme-primary font-bold">Data Analysis &amp; Modeling:</strong> EDA, Statistical &amp; Predictive Modeling, Random Forest, Data Cleaning, Winsorization, Data Quality Validation</div>
+                        <div><strong class="text-theme-primary font-bold">Data Engineering:</strong> ETL Pipeline Design, Pipeline Orchestration, API Integration, Data Automation, RBAC, Relational Database Design</div>
+                        <div><strong class="text-theme-primary font-bold">BI &amp; Visualization:</strong> Power BI, Tableau, Plotly, Matplotlib, Seaborn, Dashboard Development</div>
+                        <div><strong class="text-theme-primary font-bold">Languages &amp; Tools:</strong> Python, SQL, Java, C, C++, Pandas, NumPy, Scikit-learn, Streamlit, MySQL, SQLite, Git, GCP, Jupyter Notebook</div>
+                    </div>
+                </div>
+
+                <!-- 3. Professional Experience -->
+                <div class="mb-3.5">
+                    <h2 class="resume-section-heading">PROFESSIONAL EXPERIENCE</h2>
+                    <div class="mb-2">
+                        <div class="flex flex-wrap justify-between items-baseline mb-1">
+                            <span class="text-xs font-bold text-theme-primary">Software Development &amp; Data Engineering — <span class="font-semibold text-theme-secondary">MECON Limited, Ranchi</span></span>
+                            <span class="text-xs font-mono font-bold text-electric-cyan">April 2026 – May 2026</span>
+                        </div>
+                        <div class="space-y-0.5 text-theme-secondary font-medium">
+                            <div class="resume-bullet-point">
+                                Delivered 3 desktop applications from requirements to deployment: the SAP Analysis Tool, Timesheet Compliance Dashboard, and Financial Analysis Tool, working independently with minimal supervision.
+                            </div>
+                            <div class="resume-bullet-point">
+                                Engineered a zero-dependency ETL pipeline that ingests, validates, and cleans 100,000+ SAP records at ~6,700 rows per second, replacing a slow manual process with a sub-15-second report that remains in daily production use.
+                            </div>
+                            <div class="resume-bullet-point">
+                                Automated HR compliance monitoring across 9,000+ employee timesheet logs through an RBAC-secured Streamlit dashboard, reducing anomaly detection time by ~80%.
+                            </div>
+                            <div class="resume-bullet-point">
+                                Integrated Role-Based Access Control (RBAC) and validation logic across all applications to protect sensitive employee and financial records.
+                            </div>
+                            <div class="resume-bullet-point">
+                                Designed the Financial Analysis Tool using Plotly visualizations and a custom FPDF engine to automatically generate formatted PDF reports for finance leadership.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Projects -->
+                <div class="mb-3.5">
+                    <h2 class="resume-section-heading">PROJECTS</h2>
+                    
+                    <div class="mb-1.5">
+                        <div class="flex flex-wrap justify-between items-baseline">
+                            <span class="text-xs font-bold text-theme-primary">SAP Analysis Tool &bull; <span class="font-mono font-bold text-electric-cyan text-[11px]">Python &bull; Pandas &bull; NumPy &bull; Plotly &bull; FPDF</span></span>
+                            <span class="text-[11px] font-bold text-theme-muted">MECON Limited</span>
+                        </div>
+                        <div class="resume-bullet-point text-theme-secondary font-medium">
+                            Architected a standalone ETL pipeline that parses, cleans, and reconciles 100,000+ SAP records at ~6,700 rows per second to track client payments and outstanding balances in daily finance operations.
+                        </div>
+                    </div>
+
+                    <div class="mb-1.5">
+                        <div class="flex flex-wrap justify-between items-baseline">
+                            <span class="text-xs font-bold text-theme-primary">Employee Timesheet Compliance Dashboard &bull; <span class="font-mono font-bold text-electric-cyan text-[11px]">Python &bull; Streamlit &bull; Pandas &bull; SQLite</span></span>
+                            <span class="text-[11px] font-bold text-theme-muted">MECON Limited</span>
+                        </div>
+                        <div class="resume-bullet-point text-theme-secondary font-medium">
+                            Built an RBAC-secured Streamlit tool that audits 9,000+ timesheets and automatically detects attendance anomalies for department-level review.
+                        </div>
+                    </div>
+
+                    <div class="mb-1.5">
+                        <div class="flex flex-wrap justify-between items-baseline">
+                            <span class="text-xs font-bold text-theme-primary">Video Game Global Sales Market Analysis &bull; <span class="font-mono font-bold text-electric-cyan text-[11px]">Python &bull; Pandas &bull; Matplotlib &bull; Seaborn</span></span>
+                            <span class="text-[11px] font-bold text-theme-muted">Personal Project</span>
+                        </div>
+                        <div class="resume-bullet-point text-theme-secondary font-medium">
+                            Built an end-to-end data cleaning pipeline for 5,000+ sales records—handling currency normalization and 95th-percentile Winsorization—to evaluate regional market trends.
+                        </div>
+                    </div>
+
+                    <div class="mb-1.5">
+                        <div class="flex flex-wrap justify-between items-baseline">
+                            <span class="text-xs font-bold text-theme-primary">Market Entry &amp; Buyer Segmentation Analysis &bull; <span class="font-mono font-bold text-electric-cyan text-[11px]">Python &bull; Scikit-learn &bull; Random Forest</span></span>
+                            <span class="text-[11px] font-bold text-theme-muted">Capstone Project</span>
+                        </div>
+                        <div class="resume-bullet-point text-theme-secondary font-medium">
+                            Trained a Random Forest classification model on consumer demographic and income features, projecting 56,000+ prospective buyers for an international automotive launch.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Education -->
+                <div class="mb-3.5">
+                    <h2 class="resume-section-heading">EDUCATION</h2>
+                    <div class="flex flex-wrap justify-between items-start text-xs">
+                        <div>
+                            <h3 class="font-bold text-theme-primary">Chaibasa Engineering College, Chaibasa, Jharkhand</h3>
+                            <p class="text-theme-secondary font-medium">Bachelor of Technology &mdash; Computer Science and Engineering</p>
+                            <p class="text-[11px] text-theme-muted mt-0.5 font-medium">Coursework: Data Structures &amp; Algorithms, DBMS, Operating Systems, Computer Networks, Software Engineering, Cloud Computing, Cybersecurity</p>
+                        </div>
+                        <div class="text-right font-mono">
+                            <span class="font-bold text-electric-cyan">Expected 2027</span>
+                            <div class="text-[11px] text-theme-muted font-bold">CGPA: 6.98/10 (up to Semester 4)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Certifications & Leadership -->
+                <div>
+                    <h2 class="resume-section-heading">CERTIFICATIONS &amp; LEADERSHIP</h2>
+                    <div class="space-y-0.5 text-theme-secondary font-medium">
+                        <div class="resume-bullet-point">
+                            <strong class="text-theme-primary font-bold">Data Science with AI Certification, Internshala:</strong> Built end-to-end data pipelines, performed exploratory analysis, and trained predictive models using Scikit-learn and Pandas.
+                        </div>
+                        <div class="resume-bullet-point">
+                            <strong class="text-theme-primary font-bold">Aspire Leaders Program:</strong> Completed a 9-week leadership development program on ethical leadership, cross-cultural collaboration, and project execution.
+                        </div>
+                        <div class="resume-bullet-point">
+                            <strong class="text-theme-primary font-bold">Lead Coordinator &amp; Convenor, College Tech Fest (Navkriti):</strong> Led event management and promotion for Navkriti, coordinating 5+ competitive events and student committees across engineering departments.
+                        </div>
+                        <div class="resume-bullet-point">
+                            <strong class="text-theme-primary font-bold">Techspire Tech Club:</strong> Facilitated technical workshops and hands-on coding sessions on Python, Pandas, and machine learning workflows for 20+ students.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/projects-data.js"></script>
+    <script src="js/github-api.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Dedicated Clean 1-Page PDF Generator Engine -->
+    <script>
+        function openResumeModal() {
+            const modal = document.getElementById("resume-modal");
+            if (modal) {
+                modal.classList.remove("hidden");
+                document.body.classList.add("overflow-hidden");
+            }
+        }
+        function closeResumeModal() {
+            const modal = document.getElementById("resume-modal");
+            if (modal) {
+                modal.classList.add("hidden");
+                document.body.classList.remove("overflow-hidden");
+            }
+        }
+
+        // Strict 1-Page Clean PDF Print Engine
+        function downloadResumePDF() {
+            const printFrame = document.createElement("iframe");
+            printFrame.style.position = "fixed";
+            printFrame.style.right = "0";
+            printFrame.style.bottom = "0";
+            printFrame.style.width = "0";
+            printFrame.style.height = "0";
+            printFrame.style.border = "none";
+            document.body.appendChild(printFrame);
+
+            const doc = printFrame.contentWindow.document;
+            doc.open();
+            doc.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Mohammad_Zishan_Alam_Resume</title>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+                    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+                    <style>
+                        @page {
+                            size: A4 portrait;
+                            margin: 7mm 9mm;
+                        }
+                        * {
+                            box-sizing: border-box;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        html, body {
+                            width: 100%;
+                            height: 100%;
+                            background: #ffffff;
+                            color: #111111;
+                            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+                            font-size: 8.3pt;
+                            line-height: 1.28;
+                            page-break-after: avoid;
+                        }
+                        h1 {
+                            font-size: 15pt;
+                            font-weight: 800;
+                            text-align: center;
+                            letter-spacing: 0.05em;
+                            margin-bottom: 1pt;
+                            color: #000000;
+                        }
+                        .subheading {
+                            text-align: center;
+                            font-size: 8.5pt;
+                            font-weight: 700;
+                            color: #02457a;
+                            font-family: 'JetBrains Mono', monospace;
+                            margin-bottom: 2.5pt;
+                        }
+                        .contact-line {
+                            text-align: center;
+                            font-size: 8pt;
+                            color: #333333;
+                            margin-bottom: 5pt;
+                            padding-bottom: 4pt;
+                            border-bottom: 1.2pt solid #02457a;
+                        }
+                        .contact-line a {
+                            color: #02457a;
+                            text-decoration: none;
+                            font-weight: 600;
+                        }
+                        h2 {
+                            font-size: 8.8pt;
+                            font-weight: 800;
+                            color: #000000;
+                            text-transform: uppercase;
+                            letter-spacing: 0.06em;
+                            border-bottom: 1pt solid #02457a;
+                            padding-bottom: 1pt;
+                            margin-top: 5pt;
+                            margin-bottom: 2.5pt;
+                        }
+                        .section-p {
+                            font-size: 8.1pt;
+                            line-height: 1.28;
+                            text-align: justify;
+                            color: #222222;
+                        }
+                        .skills-row {
+                            font-size: 8pt;
+                            line-height: 1.26;
+                            margin-bottom: 1pt;
+                        }
+                        .skills-row strong {
+                            font-weight: 700;
+                            color: #000000;
+                        }
+                        .exp-header {
+                            display: flex;
+                            justify-content: space-between;
+                            font-size: 8.2pt;
+                            font-weight: 700;
+                            margin-top: 3pt;
+                            margin-bottom: 1.5pt;
+                        }
+                        .exp-date {
+                            font-family: 'JetBrains Mono', monospace;
+                            font-size: 7.6pt;
+                            color: #02457a;
+                            font-weight: 700;
+                        }
+                        .bullet {
+                            position: relative;
+                            padding-left: 10pt;
+                            font-size: 7.9pt;
+                            line-height: 1.25;
+                            margin-bottom: 1.5pt;
+                            color: #222222;
+                        }
+                        .bullet::before {
+                            content: "▸";
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            color: #02457a;
+                            font-weight: bold;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>MOHAMMAD ZISHAN ALAM</h1>
+                    <div class="subheading">Data Analysis &bull; ETL &amp; Pipeline Engineering &bull; Predictive Modeling</div>
+                    <div class="contact-line">
+                        Ranchi, Jharkhand &bull;
+                        <a href="mailto:alamzishan07@gmail.com?subject=Opportunity%20/%20Project%20Inquiry%20-%20Mohammad%20Zishan%20Alam">alamzishan07@gmail.com</a> &bull;
+                        <a href="tel:+917859031586">+91 7859031586</a> &bull;
+                        <a href="https://linkedin.com/in/mohammad-zishan-alam">in/mohammad-zishan-alam</a> &bull;
+                        <a href="https://github.com/MohammadZishanAlam">gh/MohammadZishanAlam</a>
+                    </div>
+
+                    <h2>PROFESSIONAL SUMMARY</h2>
+                    <p class="section-p">
+                        Data &amp; Pipeline Engineer with hands-on experience building production ETL pipelines, compliance dashboards, and predictive models during my internship at MECON Limited. Engineered data pipelines that process over 100,000 SAP records at ~6,700 rows per second, cutting finance report generation from hours of manual work to under 15 seconds. Automated company-wide compliance tracking, giving HR and finance teams immediate, role-secured access to critical records. Proficient in Python, SQL, and Pandas, with a strong focus on turning messy operational data into clean, actionable business intelligence.
+                    </p>
+
+                    <h2>TECHNICAL SKILLS</h2>
+                    <div class="skills-row"><strong>Data Analysis &amp; Modeling:</strong> EDA, Statistical &amp; Predictive Modeling, Random Forest, Data Cleaning, Winsorization, Data Quality Validation</div>
+                    <div class="skills-row"><strong>Data Engineering:</strong> ETL Pipeline Design, Pipeline Orchestration, API Integration, Data Automation, RBAC, Relational Database Design</div>
+                    <div class="skills-row"><strong>BI &amp; Visualization:</strong> Power BI, Tableau, Plotly, Matplotlib, Seaborn, Dashboard Development</div>
+                    <div class="skills-row"><strong>Languages &amp; Tools:</strong> Python, SQL, Java, C, C++, Pandas, NumPy, Scikit-learn, Streamlit, MySQL, SQLite, Git, GCP, Jupyter Notebook</div>
+
+                    <h2>PROFESSIONAL EXPERIENCE</h2>
+                    <div class="exp-header">
+                        <span>Software Development &amp; Data Engineering — MECON Limited, Ranchi</span>
+                        <span class="exp-date">April 2026 – May 2026</span>
+                    </div>
+                    <div class="bullet">Delivered 3 desktop applications from requirements to deployment: the SAP Analysis Tool, Timesheet Compliance Dashboard, and Financial Analysis Tool, working independently with minimal supervision.</div>
+                    <div class="bullet">Engineered a zero-dependency ETL pipeline that ingests, validates, and cleans 100,000+ SAP records at ~6,700 rows per second, replacing a slow manual process with a sub-15-second report that remains in daily production use.</div>
+                    <div class="bullet">Automated HR compliance monitoring across 9,000+ employee timesheet logs through an RBAC-secured Streamlit dashboard, reducing anomaly detection time by ~80%.</div>
+                    <div class="bullet">Integrated Role-Based Access Control (RBAC) and validation logic across all applications to protect sensitive employee and financial records.</div>
+                    <div class="bullet">Designed the Financial Analysis Tool using Plotly visualizations and a custom FPDF engine to automatically generate formatted PDF reports for finance leadership.</div>
+
+                    <h2>PROJECTS</h2>
+                    <div class="exp-header">
+                        <span>SAP Analysis Tool (Python, Pandas, NumPy, Plotly, FPDF)</span>
+                        <span style="font-size: 7.6pt; color: #555;">MECON Limited</span>
+                    </div>
+                    <div class="bullet">Architected a standalone ETL pipeline that parses, cleans, and reconciles 100,000+ SAP records at ~6,700 rows per second to track client payments and outstanding balances in daily finance operations.</div>
+
+                    <div class="exp-header">
+                        <span>Employee Timesheet Compliance Dashboard (Python, Streamlit, Pandas, SQLite)</span>
+                        <span style="font-size: 7.6pt; color: #555;">MECON Limited</span>
+                    </div>
+                    <div class="bullet">Built an RBAC-secured Streamlit tool that audits 9,000+ timesheets and automatically detects attendance anomalies for department-level review.</div>
+
+                    <div class="exp-header">
+                        <span>Video Game Global Sales Market Analysis (Python, Pandas, Matplotlib, Seaborn)</span>
+                        <span style="font-size: 7.6pt; color: #555;">Personal Project</span>
+                    </div>
+                    <div class="bullet">Built an end-to-end data cleaning pipeline for 5,000+ sales records—handling currency normalization and 95th-percentile Winsorization—to evaluate regional market trends.</div>
+
+                    <div class="exp-header">
+                        <span>Market Entry &amp; Buyer Segmentation Analysis (Python, Scikit-learn, Random Forest)</span>
+                        <span style="font-size: 7.6pt; color: #555;">Capstone Project</span>
+                    </div>
+                    <div class="bullet">Trained a Random Forest classification model on consumer demographic and income features, projecting 56,000+ prospective buyers for an international automotive launch.</div>
+
+                    <h2>EDUCATION</h2>
+                    <div class="exp-header">
+                        <span>Chaibasa Engineering College, Chaibasa, Jharkhand &bull; B.Tech CSE</span>
+                        <span class="exp-date">Expected 2027 &bull; CGPA: 6.98/10</span>
+                    </div>
+                    <div class="section-p" style="font-size: 7.6pt; color: #555;">
+                        Coursework: Data Structures &amp; Algorithms, DBMS, Operating Systems, Computer Networks, Software Engineering, Cloud Computing, Cybersecurity
+                    </div>
+
+                    <h2>CERTIFICATIONS &amp; LEADERSHIP</h2>
+                    <div class="bullet"><strong>Data Science with AI Certification, Internshala:</strong> Built end-to-end data pipelines, performed exploratory analysis, and trained predictive models using Scikit-learn and Pandas.</div>
+                    <div class="bullet"><strong>Aspire Leaders Program:</strong> Completed a 9-week leadership development program on ethical leadership, cross-cultural collaboration, and project execution.</div>
+                    <div class="bullet"><strong>Lead Coordinator &amp; Convenor, College Tech Fest (Navkriti):</strong> Led event management and promotion for Navkriti, coordinating 5+ competitive events and student committees across engineering departments.</div>
+                    <div class="bullet"><strong>Techspire Tech Club:</strong> Facilitated technical workshops and hands-on coding sessions on Python, Pandas, and machine learning workflows for 20+ students.</div>
+                </body>
+                </html>
+            `);
+            doc.close();
+
+            setTimeout(() => {
+                printFrame.contentWindow.focus();
+                printFrame.contentWindow.print();
+                setTimeout(() => { if (printFrame.parentNode) document.body.removeChild(printFrame); }, 1500);
+            }, 350);
+        }
+    </script>
+</body>
+</html>

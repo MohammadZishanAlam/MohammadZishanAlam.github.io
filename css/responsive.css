@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Responsive Breakpoints & Mobile Adaptations
+   ========================================================================== */
+
+/* Mobile Devices (max-width: 640px) */
+@media (max-width: 640px) {
+    html {
+        font-size: 14.5px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .stat-card {
+        padding: 0.75rem !important;
+    }
+
+    .stat-number {
+        font-size: 1.75rem !important;
+    }
+
+    .project-filter-bar {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        justify-content: flex-start !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .project-filter-btn {
+        white-space: nowrap;
+    }
+
+    .timeline-item {
+        padding-left: 1.5rem !important;
+    }
+}
+
+/* Tablet Devices (641px to 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* Large Screens (min-width: 1440px) */
+@media (min-width: 1440px) {
+    .container-wide {
+        max-width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
