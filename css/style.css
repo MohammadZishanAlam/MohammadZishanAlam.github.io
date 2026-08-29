@@ -1,52 +1,49 @@
 /* ==========================================================================
-   Electric Blue & Cyber-Clean Portfolio Design System
-   Mohammad Zishan Alam — Data & Pipeline Engineer
+   Comprehensive Design System & CSS Variables
+   Mohammad Zishan Alam — Portfolio Stylesheet
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
-/* --- CSS Variables & Dual Theme Engine --- */
 :root {
-    /* DARK THEME (Default - Glowing Cyber Aesthetic) */
+    /* DARK THEME (Cyber Obsidian, Neon Cyan & Electric Sapphire) */
     --bg-primary: #080c14;
-    --bg-gradient: radial-gradient(circle at 50% 0%, #0d1527 0%, #080c14 70%);
-    --bg-secondary: #0f172a;
-    --bg-tertiary: #1e293b;
-    --section-alt: rgba(15, 23, 42, 0.5);
-    --card-bg: rgba(15, 23, 42, 0.75);
-    --card-elevated: rgba(30, 41, 59, 0.85);
-    --card-inner: rgba(11, 17, 32, 0.7);
-    --border-color: rgba(255, 255, 255, 0.09);
-    --border-subtle: rgba(255, 255, 255, 0.05);
-    --border-glow: rgba(0, 242, 254, 0.4);
+    --bg-gradient: radial-gradient(circle at 50% 0%, #0d192e 0%, #080c14 70%);
+    --bg-secondary: #0d1322;
+    --bg-tertiary: #131b2e;
+    --section-alt: #0a0f1a;
+    --card-bg: rgba(13, 19, 34, 0.75);
+    --card-elevated: rgba(19, 27, 46, 0.9);
+    --card-inner: rgba(8, 12, 20, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --border-glow: rgba(0, 242, 254, 0.35);
 
-    /* Electric Cyan & Blue Palette in Dark Mode */
+    /* Electric Neon Accents */
     --electric-cyan: #00f2fe;
     --electric-blue: #4facfe;
-    --blue-accent: #3b82f6;
+    --blue-accent: #00c6ff;
     --neon-glow: 0 0 25px rgba(0, 242, 254, 0.35);
-    --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+    --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 
-    /* Typography in Dark Mode */
+    /* Text Colors */
     --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
     --text-accent: #00f2fe;
 
     /* Chips & Badges */
-    --badge-bg: rgba(0, 242, 254, 0.12);
+    --badge-bg: rgba(0, 242, 254, 0.1);
     --badge-text: #00f2fe;
-    --badge-border: rgba(0, 242, 254, 0.3);
-    --pill-bg: rgba(255, 255, 255, 0.06);
-    --pill-text: #cbd5e1;
+    --badge-border: rgba(0, 242, 254, 0.25);
+    --pill-bg: rgba(15, 23, 42, 0.8);
+    --pill-text: #e2e8f0;
     --pill-border: rgba(255, 255, 255, 0.1);
-    --tech-bg: #0b1120;
-    --tech-text: #94a3b8;
+    --tech-bg: rgba(0, 242, 254, 0.05);
+    --tech-text: #38bdf8;
 
     /* Navbar & Modal */
-    --nav-bg: rgba(15, 23, 42, 0.75);
-    --modal-bg: #0b1120;
-    --modal-card: rgba(15, 23, 42, 0.95);
+    --nav-bg: rgba(8, 12, 20, 0.85);
+    --modal-bg: #080c14;
+    --modal-card: rgba(13, 19, 34, 0.98);
     --orb-opacity: 0.25;
 
     /* Resume Sheet in Dark Mode */
@@ -63,54 +60,54 @@
 }
 
 [data-theme="light"] {
-    /* LIGHT THEME (Deep Navy, Midnight Cobalt & Soothing Warm-Slate Gradients) */
-    --bg-primary: #e6edf5;
-    --bg-gradient: linear-gradient(145deg, #e4ecf6 0%, #dbe5f2 50%, #d4e0ee 100%);
-    --bg-secondary: #ecf2f9;
-    --bg-tertiary: #d8e3f0;
-    --section-alt: linear-gradient(180deg, rgba(218, 229, 242, 0.6) 0%, rgba(209, 222, 238, 0.75) 100%);
-    --card-bg: rgba(255, 255, 255, 0.82);
-    --card-elevated: rgba(255, 255, 255, 0.95);
-    --card-inner: rgba(228, 238, 248, 0.7);
-    --border-color: rgba(100, 116, 139, 0.28);
-    --border-subtle: rgba(100, 116, 139, 0.18);
-    --border-glow: rgba(2, 69, 122, 0.45);
+    /* LIGHT THEME (Crisp Arctic Icy-Blue & Glacial Aesthetics) */
+    --bg-primary: #edf5fc;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #d8ecfa 0%, #edf6fd 45%, #e2f0fb 100%);
+    --bg-secondary: #e4f0fa;
+    --bg-tertiary: #d2e7f7;
+    --section-alt: linear-gradient(180deg, rgba(218, 238, 252, 0.65) 0%, rgba(205, 230, 250, 0.8) 100%);
+    --card-bg: rgba(255, 255, 255, 0.86);
+    --card-elevated: rgba(255, 255, 255, 0.98);
+    --card-inner: rgba(224, 240, 253, 0.75);
+    --border-color: rgba(30, 115, 175, 0.2);
+    --border-subtle: rgba(30, 115, 175, 0.12);
+    --border-glow: rgba(0, 140, 215, 0.45);
 
-    /* Rich Deep Navy / Cobalt Palette in Light Mode */
-    --electric-cyan: #02457a;
-    --electric-blue: #1e3a8a;
-    --blue-accent: #0f2d59;
-    --neon-glow: 0 6px 20px rgba(2, 69, 122, 0.14);
-    --card-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 3px 8px -2px rgba(15, 23, 42, 0.04);
+    /* Crisp Icy Blue Accents */
+    --electric-cyan: #026aa7;
+    --electric-blue: #02457a;
+    --blue-accent: #013459;
+    --neon-glow: 0 6px 24px rgba(2, 106, 167, 0.18);
+    --card-shadow: 0 10px 28px -6px rgba(10, 50, 85, 0.08), 0 3px 10px -2px rgba(10, 50, 85, 0.04);
 
-    /* Crisp High-Contrast Typography */
-    --text-primary: #090d16;
-    --text-secondary: #1e293b;
-    --text-muted: #475569;
-    --text-accent: #02457a;
+    /* Icy Navy & Deep Glacier Text Palette */
+    --text-primary: #041d30;
+    --text-secondary: #103858;
+    --text-muted: #3b6685;
+    --text-accent: #026aa7;
 
     /* Chips & Badges */
-    --badge-bg: rgba(2, 69, 122, 0.09);
-    --badge-text: #02457a;
-    --badge-border: rgba(2, 69, 122, 0.28);
-    --pill-bg: rgba(255, 255, 255, 0.85);
-    --pill-text: #0f172a;
-    --pill-border: rgba(100, 116, 139, 0.3);
-    --tech-bg: rgba(255, 255, 255, 0.9);
-    --tech-text: #0f172a;
+    --badge-bg: rgba(2, 106, 167, 0.1);
+    --badge-text: #026aa7;
+    --badge-border: rgba(2, 106, 167, 0.28);
+    --pill-bg: rgba(235, 246, 254, 0.9);
+    --pill-text: #041d30;
+    --pill-border: rgba(30, 115, 175, 0.25);
+    --tech-bg: rgba(238, 247, 255, 0.95);
+    --tech-text: #041d30;
 
     /* Navbar & Modal */
-    --nav-bg: rgba(235, 242, 250, 0.88);
-    --modal-bg: #e6edf5;
+    --nav-bg: rgba(235, 245, 253, 0.92);
+    --modal-bg: #edf5fc;
     --modal-card: rgba(255, 255, 255, 0.98);
-    --orb-opacity: 0.06;
+    --orb-opacity: 0.12;
 
     /* Resume Sheet in Light Mode */
     --resume-bg: #ffffff;
-    --resume-paper-border: #cbd5e1;
-    --resume-text-title: #090d16;
-    --resume-text-body: #1e293b;
-    --resume-rule: #02457a;
+    --resume-paper-border: #bcd8ed;
+    --resume-text-title: #041d30;
+    --resume-text-body: #103858;
+    --resume-rule: #026aa7;
 }
 
 /* --- Global Reset & Base Setup (Full Native Inertia Scrolling) --- */
@@ -160,8 +157,8 @@ body {
 }
 
 [data-theme="light"] ::selection {
-    background: rgba(2, 69, 122, 0.25);
-    color: #090d16;
+    background: rgba(2, 106, 167, 0.25);
+    color: #041d30;
 }
 
 /* --- Glassmorphism & UI Card Foundations --- */
@@ -330,7 +327,7 @@ body {
     text-decoration: none;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(2, 69, 122, 0.35);
+    box-shadow: 0 4px 14px rgba(2, 106, 167, 0.3);
     transition: var(--transition-smooth);
 }
 
@@ -341,7 +338,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 22px rgba(2, 69, 122, 0.45);
+    box-shadow: 0 6px 22px rgba(2, 106, 167, 0.4);
 }
 
 [data-theme="dark"] .btn-primary:hover {
@@ -442,7 +439,7 @@ body {
     background: linear-gradient(135deg, var(--electric-cyan), var(--electric-blue));
     color: #ffffff;
     border-color: transparent;
-    box-shadow: 0 2px 14px rgba(2, 69, 122, 0.35);
+    box-shadow: 0 2px 14px rgba(2, 106, 167, 0.35);
 }
 
 [data-theme="dark"] .project-filter-btn.active-filter {
@@ -467,7 +464,7 @@ body {
     outline: none;
     background: var(--card-bg);
     border-color: var(--electric-cyan);
-    box-shadow: 0 0 15px rgba(2, 69, 122, 0.2);
+    box-shadow: 0 0 15px rgba(2, 106, 167, 0.25);
 }
 
 [data-theme="dark"] .custom-input:focus {
@@ -659,7 +656,7 @@ body {
 .loader {
     width: 36px;
     height: 36px;
-    border: 3px solid rgba(2, 69, 122, 0.2);
+    border: 3px solid rgba(2, 106, 167, 0.2);
     border-radius: 50%;
     border-top-color: var(--electric-cyan);
     animation: spin 0.8s linear infinite;

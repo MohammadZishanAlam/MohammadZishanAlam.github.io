@@ -76,9 +76,9 @@ class ParticleCanvas {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         const isLight = document.documentElement.getAttribute("data-theme") === "light";
-        const primaryColor = isLight ? "rgba(2, 69, 122, " : "rgba(0, 242, 254, ";
-        const secondaryColor = isLight ? "rgba(30, 58, 138, " : "rgba(79, 172, 254, ";
-        const shadowColor = isLight ? "#02457a" : "#00f2fe";
+        const primaryColor = isLight ? "rgba(2, 106, 167, " : "rgba(0, 242, 254, ";
+        const secondaryColor = isLight ? "rgba(0, 140, 215, " : "rgba(79, 172, 254, ";
+        const shadowColor = isLight ? "#026aa7" : "#00f2fe";
 
         // Update and draw particles
         for (let i = 0; i < this.particles.length; i++) {
