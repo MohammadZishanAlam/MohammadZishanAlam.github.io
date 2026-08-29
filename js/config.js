@@ -15,7 +15,7 @@ const USER_CONFIG = {
     email: "alamzishan07@gmail.com",
     phone: "+91 7859031586",
     githubUsername: "MohammadZishanAlam",
-    linkedin: "https://linkedin.com/in/mohammad-zishan-alam",
+    linkedin: "https://linkedin.com/in/mohammad-zishan-alam-6ba779254",
     github: "https://github.com/MohammadZishanAlam",
     kaggle: "https://kaggle.com/",
     leetcode: "https://leetcode.com/",
