@@ -404,7 +404,63 @@
         </section>
 
         <!-- ==========================================================================
-             6. Career & Education Timeline
+             6. Real-Time Live GitHub Activity & Code Stream
+             ========================================================================== -->
+        <section id="github-section" class="py-20 px-4 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <div class="inline-flex items-center gap-2 badge-cyan mb-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Real-Time GitHub Activity</span>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-theme-primary">
+                        Live Code &amp; <span class="text-gradient">Activity Stream</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-theme-muted mt-1 font-medium">
+                        Directly synchronized with GitHub — live commits, repository pushes, and language metrics.
+                    </p>
+                </div>
+
+                <!-- Live Sync Controls -->
+                <div class="flex items-center gap-3">
+                    <span id="github-status-msg" class="text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>Connected live
+                    </span>
+                    <button onclick="renderGitHubSection(null, true)" class="btn-secondary-sm text-xs font-bold flex items-center gap-1.5" title="Force Refresh Real-Time GitHub Feed">
+                        <i id="github-refresh-icon" class="fas fa-arrows-rotate text-electric-cyan"></i>
+                        <span>Sync Now</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Summary Card -->
+            <div id="github-profile-card" class="mb-6">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Real-Time Push & Activity Stream Feed -->
+            <div id="github-activity-feed">
+                <!-- Injected in real-time -->
+            </div>
+
+            <!-- Languages Breakdown -->
+            <div id="github-lang-stats">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Live Repositories Grid -->
+            <div>
+                <h3 class="text-sm font-bold text-theme-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i class="far fa-folder-open text-electric-cyan"></i> All Public Repositories (Sorted by Last Pushed)
+                </h3>
+                <div id="github-repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Rendered dynamically from GitHub API -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             7. Career & Education Timeline
              ========================================================================== -->
         <section id="timeline" class="py-20 px-4 lg:px-8 max-w-5xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-12">

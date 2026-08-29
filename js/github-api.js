@@ -1,6 +1,6 @@
 /**
- * Live GitHub API Integration (Security Hardened)
- * Mohammad Zishan Alam — Real-Time Repository & Stats Integration
+ * Real-Time Live GitHub API Integration
+ * Mohammad Zishan Alam — Real-Time Repository, Activity & Commit Stream
  */
 class GitHubService {
     constructor() {
@@ -8,7 +8,9 @@ class GitHubService {
         this.cache = new Map();
         this.usernameRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/;
         this.lastRequestTime = 0;
-        this.minRequestIntervalMs = 600; // Throttle to prevent spamming
+        this.minRequestIntervalMs = 500;
+        this.autoRefreshTimer = null;
+        this.autoRefreshIntervalMs = 60000; // Auto-poll every 60s for new pushes
     }
 
     sanitizeUsername(raw) {
@@ -29,39 +31,46 @@ class GitHubService {
         this.lastRequestTime = Date.now();
     }
 
-    async fetchUserProfile(username = this.defaultUsername) {
+    timeAgo(dateString) {
+        if (!dateString) return 'recently';
+        const now = new Date();
+        const date = new Date(dateString);
+        const seconds = Math.floor((now - date) / 1000);
+
+        if (seconds < 60) return 'Just now';
+        const minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return `${minutes}m ago`;
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return `${hours}h ago`;
+        const days = Math.floor(hours / 24);
+        if (days === 1) return 'Yesterday';
+        if (days < 30) return `${days}d ago`;
+        const months = Math.floor(days / 30);
+        if (months < 12) return `${months}mo ago`;
+        return `${Math.floor(months / 12)}y ago`;
+    }
+
+    async fetchUserProfile(username = this.defaultUsername, bypassCache = false) {
         const cleanUser = this.sanitizeUsername(username);
         const cacheKey = `gh_user_${cleanUser}`;
 
-        // Check in-memory & sessionStorage cache
-        if (this.cache.has(cacheKey)) return this.cache.get(cacheKey);
-        try {
-            const cached = sessionStorage.getItem(cacheKey);
-            if (cached) {
-                const parsed = JSON.parse(cached);
-                this.cache.set(cacheKey, parsed);
-                return parsed;
-            }
-        } catch (_) {}
+        if (!bypassCache && this.cache.has(cacheKey)) return this.cache.get(cacheKey);
 
         await this.throttle();
 
         try {
             const response = await fetch(`https://api.github.com/users/${encodeURIComponent(cleanUser)}`, {
-                headers: {
-                    'Accept': 'application/vnd.github.v3+json'
-                }
+                headers: { 'Accept': 'application/vnd.github.v3+json' }
             });
 
             if (!response.ok) {
                 if (response.status === 404) throw new Error(`GitHub user '@${cleanUser}' not found.`);
-                if (response.status === 403) throw new Error("GitHub API rate limit exceeded. Cached data will be used where available.");
+                if (response.status === 403) throw new Error("GitHub API rate limit reached. Re-syncing shortly.");
                 throw new Error(`GitHub API returned status ${response.status}`);
             }
 
             const data = await response.json();
             this.cache.set(cacheKey, data);
-            try { sessionStorage.setItem(cacheKey, JSON.stringify(data)); } catch (_) {}
             return data;
         } catch (error) {
             console.warn("GitHub Profile Fetch Warning:", error.message);
@@ -69,27 +78,17 @@ class GitHubService {
         }
     }
 
-    async fetchUserRepos(username = this.defaultUsername) {
+    async fetchUserRepos(username = this.defaultUsername, bypassCache = false) {
         const cleanUser = this.sanitizeUsername(username);
         const cacheKey = `gh_repos_${cleanUser}`;
 
-        if (this.cache.has(cacheKey)) return this.cache.get(cacheKey);
-        try {
-            const cached = sessionStorage.getItem(cacheKey);
-            if (cached) {
-                const parsed = JSON.parse(cached);
-                this.cache.set(cacheKey, parsed);
-                return parsed;
-            }
-        } catch (_) {}
+        if (!bypassCache && this.cache.has(cacheKey)) return this.cache.get(cacheKey);
 
         await this.throttle();
 
         try {
-            const response = await fetch(`https://api.github.com/users/${encodeURIComponent(cleanUser)}/repos?sort=updated&per_page=12`, {
-                headers: {
-                    'Accept': 'application/vnd.github.v3+json'
-                }
+            const response = await fetch(`https://api.github.com/users/${encodeURIComponent(cleanUser)}/repos?sort=pushed&per_page=12`, {
+                headers: { 'Accept': 'application/vnd.github.v3+json' }
             });
 
             if (!response.ok) {
@@ -101,13 +100,39 @@ class GitHubService {
             const repos = await response.json();
             if (!Array.isArray(repos)) throw new Error("Invalid response from GitHub.");
 
-            const sortedRepos = repos.sort((a, b) => (b.stargazers_count + b.forks_count) - (a.stargazers_count + a.forks_count));
-            this.cache.set(cacheKey, sortedRepos);
-            try { sessionStorage.setItem(cacheKey, JSON.stringify(sortedRepos)); } catch (_) {}
-            return sortedRepos;
+            this.cache.set(cacheKey, repos);
+            return repos;
         } catch (error) {
             console.warn("GitHub Repos Fetch Warning:", error.message);
             throw error;
+        }
+    }
+
+    async fetchUserEvents(username = this.defaultUsername, bypassCache = false) {
+        const cleanUser = this.sanitizeUsername(username);
+        const cacheKey = `gh_events_${cleanUser}`;
+
+        if (!bypassCache && this.cache.has(cacheKey)) return this.cache.get(cacheKey);
+
+        await this.throttle();
+
+        try {
+            const response = await fetch(`https://api.github.com/users/${encodeURIComponent(cleanUser)}/events/public?per_page=10`, {
+                headers: { 'Accept': 'application/vnd.github.v3+json' }
+            });
+
+            if (!response.ok) {
+                return []; // Non-blocking fallback
+            }
+
+            const events = await response.json();
+            if (!Array.isArray(events)) return [];
+
+            this.cache.set(cacheKey, events);
+            return events;
+        } catch (error) {
+            console.warn("GitHub Events Fetch Warning:", error.message);
+            return [];
         }
     }
 
@@ -148,7 +173,7 @@ class GitHubService {
             "Shell": "#89e051"
         };
         const colorsLight = {
-            "Python": "#1e4f7a",
+            "Python": "#02457a",
             "Jupyter Notebook": "#c04e06",
             "JavaScript": "#b8860b",
             "TypeScript": "#1d5899",
@@ -169,23 +194,28 @@ class GitHubService {
 const githubService = new GitHubService();
 
 // UI Render Handler for GitHub Section
-async function renderGitHubSection(username = null) {
+async function renderGitHubSection(username = null, bypassCache = false) {
     const targetRaw = username || (typeof USER_CONFIG !== 'undefined' ? USER_CONFIG.githubUsername : 'MohammadZishanAlam');
     const container = document.getElementById('github-repos-container');
     const profileCard = document.getElementById('github-profile-card');
     const statsContainer = document.getElementById('github-lang-stats');
+    const activityFeedContainer = document.getElementById('github-activity-feed');
     const statusMsg = document.getElementById('github-status-msg');
+    const refreshBtnIcon = document.getElementById('github-refresh-icon');
 
     if (!container) return;
+
+    if (refreshBtnIcon) refreshBtnIcon.classList.add('fa-spin');
 
     let targetUser;
     try {
         targetUser = githubService.sanitizeUsername(targetRaw);
     } catch (valErr) {
+        if (refreshBtnIcon) refreshBtnIcon.classList.remove('fa-spin');
         container.innerHTML = `
             <div class="col-span-full glass-card p-6 rounded-2xl text-center border-rose-500/30">
                 <i class="fas fa-triangle-exclamation text-amber-500 text-2xl mb-2"></i>
-                <p class="text-sm text-theme-primary font-bold mb-1">Security Validation Error</p>
+                <p class="text-sm text-theme-primary font-bold mb-1">Validation Error</p>
                 <p class="text-xs text-rose-500 font-medium">${escapeHtml(valErr.message)}</p>
             </div>
         `;
@@ -196,26 +226,21 @@ async function renderGitHubSection(username = null) {
         return;
     }
 
-    // Show loading state
-    container.innerHTML = `
-        <div class="col-span-full flex flex-col items-center justify-center py-12 text-center">
-            <div class="loader mb-4"></div>
-            <p class="text-xs text-theme-muted font-medium">Fetching verified repositories from GitHub for <strong>@${escapeHtml(targetUser)}</strong>...</p>
-        </div>
-    `;
-
     if (statusMsg) {
-        statusMsg.textContent = `Syncing with @${targetUser}...`;
-        statusMsg.className = "text-xs text-electric-cyan animate-pulse font-bold";
+        statusMsg.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping mr-1.5"></span>Syncing live with @${targetUser}...`;
+        statusMsg.className = "text-xs text-electric-cyan font-bold flex items-center";
     }
 
     try {
-        const [profile, repos] = await Promise.all([
-            githubService.fetchUserProfile(targetUser),
-            githubService.fetchUserRepos(targetUser)
+        const [profile, repos, events] = await Promise.all([
+            githubService.fetchUserProfile(targetUser, bypassCache),
+            githubService.fetchUserRepos(targetUser, bypassCache),
+            githubService.fetchUserEvents(targetUser, bypassCache)
         ]);
 
-        // Secure Profile Card Render
+        if (refreshBtnIcon) refreshBtnIcon.classList.remove('fa-spin');
+
+        // 1. Secure Profile Card Render
         if (profileCard) {
             const safeAvatar = profile.avatar_url && profile.avatar_url.startsWith('https://') ? escapeHtml(profile.avatar_url) : 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png';
             const safeHtmlUrl = profile.html_url && profile.html_url.startsWith('https://') ? escapeHtml(profile.html_url) : '#';
@@ -229,6 +254,10 @@ async function renderGitHubSection(username = null) {
                             <a href="${safeHtmlUrl}" target="_blank" rel="noopener noreferrer" class="badge-cyan text-xs">
                                 <i class="fab fa-github mr-1"></i>@${escapeHtml(profile.login)}
                             </a>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Live Sync Active
+                            </span>
                         </div>
                         <p class="text-xs text-theme-secondary mb-3 font-medium">${escapeHtml(profile.bio || "Data & Pipeline Engineer | B.Tech CSE Undergrad")}</p>
                         <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-theme-muted font-semibold">
@@ -240,7 +269,7 @@ async function renderGitHubSection(username = null) {
                         </div>
                     </div>
                     <div class="flex flex-col gap-2 w-full md:w-auto flex-shrink-0">
-                        <a href="${safeHtmlUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary-sm text-center">
+                        <a href="${safeHtmlUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary-sm text-center font-bold">
                             <i class="fab fa-github mr-1.5"></i>Follow on GitHub
                         </a>
                     </div>
@@ -248,14 +277,81 @@ async function renderGitHubSection(username = null) {
             `;
         }
 
-        // Render Language Breakdown
+        // 2. Real-Time Activity & Commit Stream Feed
+        if (activityFeedContainer) {
+            if (events && events.length > 0) {
+                const recentPushes = events.filter(e => e.type === 'PushEvent' || e.type === 'CreateEvent' || e.type === 'WatchEvent').slice(0, 4);
+
+                activityFeedContainer.innerHTML = `
+                    <div class="glass-card p-5 rounded-2xl mb-6 border border-cyan-600/30">
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <h4 class="text-xs font-bold text-theme-primary uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-satellite-dish text-electric-cyan animate-pulse"></i>
+                                Real-Time GitHub Push &amp; Activity Stream
+                            </h4>
+                            <span class="text-[10px] text-theme-muted font-mono font-bold">Auto-Syncs with GitHub</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${recentPushes.map(ev => {
+                                const repoShortName = ev.repo ? ev.repo.name.replace(/^[^/]+\//, '') : 'Repository';
+                                const repoFullUrl = `https://github.com/${ev.repo ? ev.repo.name : targetUser}`;
+                                const timeStr = githubService.timeAgo(ev.created_at);
+
+                                let eventIcon = 'fa-code-commit text-electric-cyan';
+                                let eventText = 'Pushed updates';
+                                let commitMsg = '';
+
+                                if (ev.type === 'PushEvent') {
+                                    eventIcon = 'fa-code-commit text-emerald-500';
+                                    const commitCount = (ev.payload && ev.payload.commits) ? ev.payload.commits.length : 1;
+                                    eventText = `Pushed ${commitCount} commit${commitCount > 1 ? 's' : ''}`;
+                                    if (ev.payload && ev.payload.commits && ev.payload.commits[0]) {
+                                        commitMsg = ev.payload.commits[0].message || '';
+                                    }
+                                } else if (ev.type === 'CreateEvent') {
+                                    eventIcon = 'fa-folder-plus text-amber-500';
+                                    eventText = `Created ${ev.payload && ev.payload.ref_type ? ev.payload.ref_type : 'repository'}`;
+                                } else if (ev.type === 'WatchEvent') {
+                                    eventIcon = 'fa-star text-amber-400';
+                                    eventText = 'Starred repository';
+                                }
+
+                                return `
+                                    <div class="p-3 rounded-xl card-inner-box flex items-start justify-between gap-2 transition-all hover:border-cyan-600/40">
+                                        <div class="flex items-start gap-2.5 overflow-hidden">
+                                            <div class="mt-0.5 text-sm flex-shrink-0">
+                                                <i class="fas ${eventIcon}"></i>
+                                            </div>
+                                            <div class="overflow-hidden">
+                                                <div class="flex items-center gap-1.5 flex-wrap">
+                                                    <span class="text-xs font-bold text-theme-primary">${escapeHtml(eventText)} to</span>
+                                                    <a href="${escapeHtml(repoFullUrl)}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-electric-cyan hover:underline truncate">
+                                                        ${escapeHtml(repoShortName)}
+                                                    </a>
+                                                </div>
+                                                ${commitMsg ? `<p class="text-[11px] text-theme-secondary font-mono truncate mt-0.5">"${escapeHtml(commitMsg)}"</p>` : ''}
+                                            </div>
+                                        </div>
+                                        <span class="text-[10px] text-theme-muted font-mono font-bold flex-shrink-0 whitespace-nowrap">${escapeHtml(timeStr)}</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                activityFeedContainer.innerHTML = '';
+            }
+        }
+
+        // 3. Render Language Breakdown
         if (statsContainer) {
             const langStats = githubService.calculateLanguageStats(repos);
             if (langStats.length > 0) {
                 statsContainer.innerHTML = `
                     <div class="glass-card p-5 rounded-2xl mb-6">
                         <h4 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-3 flex items-center gap-2">
-                            <i class="fas fa-chart-pie text-electric-cyan"></i> Top GitHub Languages Breakdown
+                            <i class="fas fa-chart-pie text-electric-cyan"></i> Real-Time Code Languages Breakdown
                         </h4>
                         <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-3 flex overflow-hidden mb-3 border border-slate-300 dark:border-slate-700">
                             ${langStats.map(l => `
@@ -280,7 +376,7 @@ async function renderGitHubSection(username = null) {
             }
         }
 
-        // Render Repositories
+        // 4. Render Repositories Sorted by Real-Time Activity
         if (repos.length === 0) {
             container.innerHTML = `
                 <div class="col-span-full glass-card p-8 rounded-2xl text-center">
@@ -294,6 +390,7 @@ async function renderGitHubSection(username = null) {
         container.innerHTML = repos.slice(0, 8).map(repo => {
             const langColor = githubService.getLanguageColor(repo.language || 'Other');
             const safeRepoUrl = repo.html_url && repo.html_url.startsWith('https://') ? escapeHtml(repo.html_url) : '#';
+            const updatedTime = githubService.timeAgo(repo.pushed_at || repo.updated_at);
 
             return `
                 <div class="github-repo-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-cyan-600/50">
@@ -325,14 +422,11 @@ async function renderGitHubSection(username = null) {
                                     <span class="text-theme-secondary text-[11px] font-semibold">${escapeHtml(repo.language)}</span>
                                 </span>
                             ` : ''}
-                            <span class="flex items-center gap-1" title="Stars">
-                                <i class="far fa-star text-amber-500"></i> ${parseInt(repo.stargazers_count, 10) || 0}
-                            </span>
-                            <span class="flex items-center gap-1" title="Forks">
-                                <i class="fas fa-code-fork text-cyan-600"></i> ${parseInt(repo.forks_count, 10) || 0}
+                            <span class="flex items-center gap-1 text-[11px]" title="Last Pushed">
+                                <i class="fas fa-clock-rotate-left text-cyan-600"></i> ${escapeHtml(updatedTime)}
                             </span>
                         </div>
-                        <a href="${safeRepoUrl}" target="_blank" rel="noopener noreferrer" class="text-electric-cyan font-bold hover:underline flex items-center gap-1 text-[11px]" title="View on GitHub">
+                        <a href="${safeRepoUrl}" target="_blank" rel="noopener noreferrer" class="text-electric-cyan font-bold hover:underline flex items-center gap-1 text-[11px]" title="Open ${escapeHtml(repo.name)} on GitHub">
                             <span>Code</span>
                             <i class="fas fa-arrow-up-right-from-square text-[9px]"></i>
                         </a>
@@ -342,11 +436,12 @@ async function renderGitHubSection(username = null) {
         }).join('');
 
         if (statusMsg) {
-            statusMsg.textContent = `Connected to GitHub (@${targetUser})`;
-            statusMsg.className = "text-xs text-emerald-600 dark:text-emerald-400 font-bold";
+            statusMsg.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>Connected &bull; Last Synced ${new Date().toLocaleTimeString()}`;
+            statusMsg.className = "text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center";
         }
 
     } catch (err) {
+        if (refreshBtnIcon) refreshBtnIcon.classList.remove('fa-spin');
         console.error("GitHub Render Error:", err);
         container.innerHTML = `
             <div class="col-span-full glass-card p-6 rounded-2xl text-center border-rose-500/30">
@@ -361,6 +456,16 @@ async function renderGitHubSection(username = null) {
             statusMsg.className = "text-xs text-rose-500 dark:text-rose-400 font-bold";
         }
     }
+}
+
+// Start Real-Time Auto-Polling
+function startGitHubAutoSync() {
+    if (githubService.autoRefreshTimer) clearInterval(githubService.autoRefreshTimer);
+    githubService.autoRefreshTimer = setInterval(() => {
+        const userInput = document.getElementById("github-username-input");
+        const currentUser = userInput ? userInput.value.trim() : null;
+        renderGitHubSection(currentUser, true);
+    }, githubService.autoRefreshIntervalMs);
 }
 
 function escapeHtml(unsafe) {

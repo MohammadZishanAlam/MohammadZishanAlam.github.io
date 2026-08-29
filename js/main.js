@@ -667,23 +667,12 @@ function initMobileNav() {
 }
 
 /* ==========================================================================
-   13. GitHub Dynamic Integration Bar
+   13. GitHub Dynamic Integration Bar & Live Real-Time Auto-Sync
    ========================================================================== */
 function initGitHubIntegration() {
     const user = (typeof USER_CONFIG !== 'undefined' && USER_CONFIG.githubUsername) ? USER_CONFIG.githubUsername : 'MohammadZishanAlam';
     renderGitHubSection(user);
-
-    const githubUserForm = document.getElementById("github-switch-form");
-    const githubUserInput = document.getElementById("github-username-input");
-
-    if (githubUserForm && githubUserInput) {
-        githubUserInput.value = user;
-        githubUserForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const newUsername = githubUserInput.value.trim();
-            if (newUsername) {
-                renderGitHubSection(newUsername);
-            }
-        });
+    if (typeof startGitHubAutoSync === 'function') {
+        startGitHubAutoSync();
     }
 }
