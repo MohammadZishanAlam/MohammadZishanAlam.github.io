@@ -1,5 +1,5 @@
 /**
- * Main Portfolio Application Logic (Authentic, Defendable & Security Hardened)
+ * Main Portfolio Application Logic (Production & Security Hardened)
  * Mohammad Zishan Alam — Aspiring Data Engineer & Problem Solver
  */
 
@@ -52,7 +52,7 @@ function setTheme(theme) {
 }
 
 /* ==========================================================================
-   2. User Config Initialization (Bot-Proof Contact Obfuscation)
+   2. User Config Initialization (Bot-Protected Contact Obfuscation)
    ========================================================================== */
 function populateUserConfig() {
     if (typeof USER_CONFIG === 'undefined') return;
@@ -113,13 +113,13 @@ function populateUserConfig() {
     setSafeLink("kaggle-link", USER_CONFIG.kaggle);
     setSafeLink("leetcode-link", USER_CONFIG.leetcode);
 
-    // Render 4 Foundation Stats Cards in Hero
+    // Render Stats (Original Animated Numbers Grid)
     const statsContainer = document.getElementById("hero-stats-container");
     if (statsContainer && Array.isArray(USER_CONFIG.stats)) {
         statsContainer.innerHTML = USER_CONFIG.stats.map(stat => `
-            <div class="stat-card glass-card p-3.5 rounded-2xl text-center border-glow transition-all hover:-translate-y-1">
-                <div class="text-xs sm:text-sm font-extrabold text-electric-cyan font-mono mb-1 truncate">${escapeHtml(stat.value)}</div>
-                <div class="text-[10px] text-theme-muted uppercase font-bold tracking-wider">${escapeHtml(stat.label)}</div>
+            <div class="stat-card glass-card p-4 rounded-2xl text-center border-glow transition-all hover:-translate-y-1">
+                <div class="stat-number text-2xl sm:text-3xl font-extrabold text-electric-cyan font-mono mb-1" data-target="${parseInt(stat.value, 10) || 0}">0${escapeHtml(stat.suffix || '')}</div>
+                <div class="text-xs text-theme-secondary font-bold">${escapeHtml(stat.label)}</div>
             </div>
         `).join('');
     }
@@ -133,11 +133,11 @@ function initTypingEffect() {
     if (!typingElement) return;
 
     const roles = (typeof USER_CONFIG !== 'undefined' && Array.isArray(USER_CONFIG.roles)) ? USER_CONFIG.roles : [
-        "Data Engineering",
-        "DSA & Problem Solving",
-        "Python & SQL Architecture",
-        "ETL Pipeline Design",
-        "Data Analytics & BI"
+        "Data & Pipeline Engineer",
+        "DSA & Problem Solver",
+        "Python & SQL Developer",
+        "ETL Pipeline Designer",
+        "Data Analytics & BI Developer"
     ];
 
     let roleIdx = 0;
@@ -505,10 +505,37 @@ function initScrollSpy() {
 }
 
 /* ==========================================================================
-   10. Foundation Stats Counter
+   10. Foundation Stats Animated Counter
    ========================================================================== */
 function initStatsCounter() {
-    // Handled dynamically in populateUserConfig()
+    const counters = document.querySelectorAll(".stat-number");
+    let animated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) {
+                animated = true;
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute("data-target"), 10) || 0;
+                    const suffix = counter.textContent.replace(/[0-9]/g, '');
+                    let count = 0;
+                    const increment = Math.max(1, Math.ceil(target / 35));
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= target) {
+                            counter.textContent = `${target}${suffix}`;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = `${count}${suffix}`;
+                        }
+                    }, 35);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const statsContainer = document.getElementById("hero-stats-container");
+    if (statsContainer) observer.observe(statsContainer);
 }
 
 /* ==========================================================================

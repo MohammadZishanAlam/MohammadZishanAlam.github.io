@@ -5,9 +5,9 @@
 const USER_CONFIG = {
     // Basic Details
     name: "Mohammad Zishan Alam",
-    title: "Aspiring Data Engineer | CS Undergrad & Problem Solver",
+    title: "Data & Pipeline Engineer | CS Undergrad",
     tagline: "Data Engineering · DSA & Problem Solving · Python & SQL Architecture",
-    bio: "Computer Science undergraduate focused on Data Engineering, algorithmic problem solving, and building scalable data workflows. Experienced in developing modular Python applications, relational database schemas, and data processing scripts. Passionate about designing robust ETL pipelines, optimizing SQL queries, and solving complex challenges with clean, efficient code.",
+    bio: "Computer Science undergraduate with practical experience building high-throughput ETL pipelines, internal compliance dashboards, and predictive models. Focused on clean Python architecture, robust SQL data workflows, and turning complex operational data into reliable business intelligence.",
     location: "Ranchi, Jharkhand, India",
     availabilityStatus: "Open to work and collaborate",
     
@@ -34,18 +34,18 @@ const USER_CONFIG = {
         focus: "Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, Object-Oriented Programming, Software Engineering"
     },
 
-    // Core Technical Foundation Stats (No Internship in Hero)
+    // Key Production & Performance Metrics (Original Animated Numbers Grid)
     stats: [
-        { label: "Core Focus", value: "Data Engineering" },
-        { label: "Primary Languages", value: "Python & SQL" },
-        { label: "Core Foundation", value: "DSA & DBMS" },
-        { label: "Key Specialization", value: "ETL & Pipelines" }
+        { label: "ETL Processing Speed", value: 6700, suffix: " rows/s" },
+        { label: "SAP Records Processed", value: 100, suffix: "K+" },
+        { label: "Timesheets Audited", value: 9, suffix: "K+" },
+        { label: "Report Time Reduced", value: 95, suffix: "%" }
     ],
 
     // Typing Animation Target Roles & Competencies
     roles: [
-        "Aspiring Data Engineer",
-        "DSA & Algorithmic Problem Solver",
+        "Data & Pipeline Engineer",
+        "DSA & Problem Solver",
         "Python & SQL Developer",
         "ETL Pipeline Designer",
         "Data Analytics & BI Developer"
