@@ -1,35 +1,99 @@
 /* ==========================================================================
    Responsive Breakpoints & Mobile Adaptations
+   Mohammad Zishan Alam — Mobile UX & Touch Optimization
    ========================================================================== */
 
-/* Mobile Devices (max-width: 640px) */
-@media (max-width: 640px) {
+/* Mobile Devices & Small Screens (max-width: 768px) */
+@media (max-width: 768px) {
     html {
-        font-size: 14.5px;
+        font-size: 15px;
     }
 
     .hero-title {
-        font-size: 2.2rem !important;
+        font-size: 2.25rem !important;
         line-height: 1.2 !important;
     }
 
     .stat-card {
-        padding: 0.75rem !important;
+        padding: 0.85rem !important;
     }
 
     .stat-number {
-        font-size: 1.75rem !important;
+        font-size: 1.65rem !important;
     }
 
+    /* Category Filter Tab Bar Smooth Horizontal Scroll */
     .project-filter-bar {
-        overflow-x: auto;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
         padding-bottom: 0.5rem;
         justify-content: flex-start !important;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .project-filter-bar::-webkit-scrollbar {
+        display: none;
     }
 
     .project-filter-btn {
         white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Horizontal Swipe Carousel for Skills Matrix on Mobile */
+    .skills-mobile-scroll {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 1rem !important;
+        padding-bottom: 1.25rem !important;
+        padding-top: 0.25rem !important;
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
+        scrollbar-width: thin !important;
+    }
+
+    .skills-mobile-scroll > div {
+        flex: 0 0 84vw !important;
+        max-width: 325px !important;
+        min-width: 275px !important;
+        scroll-snap-align: start !important;
+        scroll-snap-stop: normal !important;
+    }
+
+    /* Horizontal Swipe Carousel for Featured Projects on Mobile */
+    .projects-mobile-scroll {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 1.15rem !important;
+        padding-bottom: 1.25rem !important;
+        padding-top: 0.25rem !important;
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
+        scrollbar-width: thin !important;
+    }
+
+    .projects-mobile-scroll > div {
+        flex: 0 0 86vw !important;
+        max-width: 335px !important;
+        min-width: 285px !important;
+        scroll-snap-align: start !important;
+        scroll-snap-stop: normal !important;
+    }
+
+    /* Visual Scroll Hint Badge */
+    .mobile-scroll-hint {
+        display: inline-flex !important;
+        animation: pulse 2s infinite;
     }
 
     .timeline-item {
@@ -37,10 +101,21 @@
     }
 }
 
-/* Tablet Devices (641px to 1024px) */
-@media (min-width: 641px) and (max-width: 1024px) {
+/* Tablet Devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
     .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .mobile-scroll-hint {
+        display: none !important;
+    }
+}
+
+/* Desktop Screens (min-width: 769px) */
+@media (min-width: 769px) {
+    .mobile-scroll-hint {
+        display: none !important;
     }
 }
 

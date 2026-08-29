@@ -52,7 +52,7 @@ function setTheme(theme) {
 }
 
 /* ==========================================================================
-   2. User Config Initialization (Bot-Protected Contact Obfuscation)
+   2. User Config Initialization
    ========================================================================== */
 function populateUserConfig() {
     if (typeof USER_CONFIG === 'undefined') return;
@@ -70,33 +70,6 @@ function populateUserConfig() {
     setText(".user-bio", USER_CONFIG.bio);
     setText(".user-location", USER_CONFIG.location);
     setText(".user-availability", USER_CONFIG.availabilityStatus);
-    
-    // Dynamic Bot-Protected Email & Phone Binding
-    const realEmail = USER_CONFIG.email;
-    const realPhone = USER_CONFIG.phone;
-
-    document.querySelectorAll(".user-email").forEach(el => {
-        el.textContent = realEmail;
-    });
-
-    document.querySelectorAll(".user-phone").forEach(el => {
-        el.textContent = realPhone;
-    });
-
-    const emailLink = document.getElementById("contact-email-link");
-    if (emailLink) {
-        emailLink.href = `mailto:${encodeURIComponent(realEmail)}?subject=${encodeURIComponent("Opportunity / Project Inquiry - Mohammad Zishan Alam")}`;
-    }
-
-    const emailQuick = document.getElementById("email-quick-link");
-    if (emailQuick) {
-        emailQuick.href = `mailto:${encodeURIComponent(realEmail)}?subject=${encodeURIComponent("Opportunity / Project Inquiry - Mohammad Zishan Alam")}`;
-    }
-
-    const phoneLink = document.getElementById("contact-phone-link");
-    if (phoneLink) {
-        phoneLink.href = `tel:${realPhone.replace(/[^0-9+]/g, '')}`;
-    }
 
     // Social Links with noopener noreferrer enforcement
     const setSafeLink = (id, url) => {
@@ -423,14 +396,14 @@ window.openCaseStudyModal = function(projectId) {
 
 /* ==========================================================================
    8. Timeline: Experience & Education
-   ========================================================================== */
+   ========================================================================= */
 function renderTimeline() {
     const container = document.getElementById("timeline-container");
     if (!container || typeof TIMELINE_DATA === 'undefined') return;
 
     container.innerHTML = TIMELINE_DATA.map((item) => `
         <div class="timeline-item relative pl-8 pb-10 border-l-2 border-slate-300 dark:border-slate-700 last:border-l-transparent group">
-            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white dark:bg-slate-900 border-2 border-electric-cyan group-hover:scale-125 transition-all shadow-[0_0_10px_rgba(2,69,122,0.4)]"></div>
+            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white dark:bg-slate-900 border-2 border-electric-cyan group-hover:scale-125 transition-all shadow-[0_0_10px_rgba(2,106,167,0.4)]"></div>
             <div class="glass-card p-5 rounded-2xl transition-all duration-300 hover:border-cyan-600/40 hover:-translate-y-1">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <span class="badge-cyan text-[10px] uppercase font-bold">${escapeHtml(item.badge)}</span>
@@ -539,9 +512,19 @@ function initStatsCounter() {
 }
 
 /* ==========================================================================
-   11. Contact Form & Dynamic Mailto Dispatch
+   11. Bot-Safe Action Triggers: Direct Email & Direct Call Functions
    ========================================================================== */
-let lastFormSubmitTime = 0;
+function composeEmail() {
+    const email = (typeof USER_CONFIG !== 'undefined') ? USER_CONFIG.email : "alamzishan07@gmail.com";
+    const subject = encodeURIComponent("Opportunity / Project Inquiry - Mohammad Zishan Alam");
+    window.location.href = `mailto:${encodeURIComponent(email)}?subject=${subject}`;
+}
+
+function directCall() {
+    const phone = (typeof USER_CONFIG !== 'undefined') ? USER_CONFIG.phone : "+91 7859031586";
+    const cleanPhone = phone.replace(/[^0-9+]/g, '');
+    window.location.href = `tel:${cleanPhone}`;
+}
 
 function copyEmailToClipboard(e) {
     if (e) {
@@ -558,13 +541,28 @@ function copyEmailToClipboard(e) {
     }
 }
 
+function copyPhoneToClipboard(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    const phone = (typeof USER_CONFIG !== 'undefined') ? USER_CONFIG.phone : "+91 7859031586";
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(phone).then(() => {
+            showToast("Phone number copied to clipboard!");
+        }).catch(() => {
+            showToast("Could not copy automatically.", "error");
+        });
+    }
+}
+
+/* ==========================================================================
+   12. Contact Form & Mailto Dispatch
+   ========================================================================== */
+let lastFormSubmitTime = 0;
+
 function initContactForm() {
     const form = document.getElementById("contact-form");
-    const copyBtn = document.getElementById("copy-email-btn");
-
-    if (copyBtn) {
-        copyBtn.addEventListener("click", copyEmailToClipboard);
-    }
 
     if (form) {
         form.addEventListener("submit", (e) => {
@@ -648,7 +646,7 @@ function showToast(message, type = "success") {
 
     toast.className = `fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-xs font-bold transition-all duration-300 ${
         type === "success" 
-            ? "glass-card text-theme-primary border border-cyan-600 shadow-[0_0_20px_rgba(2,69,122,0.3)]" 
+            ? "glass-card text-theme-primary border border-cyan-600 shadow-[0_0_20px_rgba(2,106,167,0.3)]" 
             : "glass-card text-rose-600 dark:text-rose-400 border border-rose-500"
     }`;
     toast.innerHTML = `
@@ -663,7 +661,7 @@ function showToast(message, type = "success") {
 }
 
 /* ==========================================================================
-   12. Mobile Menu Navigation
+   13. Mobile Menu Navigation
    ========================================================================== */
 function initMobileNav() {
     const mobileMenuBtn = document.getElementById("mobile-menu-btn");

@@ -136,7 +136,7 @@
                     <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-theme-primary tracking-tight leading-tight">
                         Hi, I'm <span class="text-gradient user-name">Mohammad Zishan Alam</span><br>
                         <span class="text-2xl sm:text-3xl lg:text-4xl text-theme-secondary font-semibold">
-                            Focused on <br class="sm:hidden">
+                            Specializing in <br class="sm:hidden">
                             <span class="inline-block min-h-[1.4em] align-bottom">
                                 <span class="text-electric-cyan font-mono font-bold" id="typing-text">Data Engineering</span><span class="cursor-blink"></span>
                             </span>
@@ -144,7 +144,7 @@
                     </h1>
 
                     <p class="user-bio text-sm sm:text-base text-theme-secondary max-w-2xl leading-relaxed mx-auto lg:mx-0 font-medium">
-                        Computer Science undergraduate focused on Data Engineering, algorithmic problem solving, and building scalable data workflows. Passionate about designing robust ETL pipelines, optimizing SQL queries, and turning complex data into clear business intelligence.
+                        Computer Science undergraduate with practical experience building high-throughput ETL pipelines, internal compliance dashboards, and predictive models. Focused on clean Python architecture, robust SQL data workflows, and turning complex operational data into reliable business intelligence.
                     </p>
 
                     <!-- Hero Action Buttons -->
@@ -163,22 +163,25 @@
                         </button>
                     </div>
 
-                    <!-- Social Profiles Strip -->
+                    <!-- Social Profiles Strip (Bot-Safe Action Triggers) -->
                     <div class="flex items-center justify-center lg:justify-start gap-3 pt-2">
-                        <span class="text-xs text-theme-muted uppercase font-mono mr-1 font-bold">Profiles:</span>
+                        <span class="text-xs text-theme-muted uppercase font-mono mr-1 font-bold">Connect:</span>
                         <a id="github-hero-link" href="https://github.com/MohammadZishanAlam" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all" title="GitHub: @MohammadZishanAlam">
                             <i class="fab fa-github"></i>
                         </a>
                         <a id="linkedin-link" href="https://linkedin.com/in/mohammad-zishan-alam-6ba779254" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all" title="LinkedIn Profile">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a id="email-quick-link" href="#contact" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all" title="Email Contact">
+                        <button onclick="composeEmail()" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all cursor-pointer" title="Send Email">
                             <i class="far fa-envelope"></i>
-                        </a>
+                        </button>
+                        <button onclick="directCall()" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-theme-secondary hover:text-electric-cyan hover:scale-110 transition-all cursor-pointer" title="Call / WhatsApp">
+                            <i class="fas fa-phone"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Hero Right Column: Focus Card & Core Foundations Grid -->
+                <!-- Hero Right Column: Focus Card & Production Stats Grid -->
                 <div class="lg:col-span-5 space-y-6">
                     <!-- Profile Card -->
                     <div class="glass-card p-6 rounded-3xl relative overflow-hidden animate-float">
@@ -219,9 +222,9 @@
                         </div>
                     </div>
 
-                    <!-- 4x Foundation Stats Grid -->
+                    <!-- 4x Animated Counter Stats Grid -->
                     <div id="hero-stats-container" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3">
-                        <!-- Rendered dynamically by main.js -->
+                        <!-- Rendered dynamically by main.js with animated numbers -->
                     </div>
                 </div>
             </div>
@@ -296,10 +299,10 @@
         </section>
 
         <!-- ==========================================================================
-             3. Skills Matrix
+             3. Skills Matrix (Mobile Horizontally Scrollable)
              ========================================================================== -->
         <section id="skills" class="py-20 px-4 lg:px-8 max-w-7xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-8">
                 <div class="badge-cyan mb-2">
                     <i class="fas fa-layer-group mr-1.5"></i>Technical Arsenal
                 </div>
@@ -309,57 +312,69 @@
                 <p class="text-xs sm:text-sm text-theme-muted mt-2 font-medium">
                     Core technical skills applied across projects, academic coursework, and automation tools.
                 </p>
+                <div class="mt-2">
+                    <span class="mobile-scroll-hint tag-pill text-[11px] font-bold"><i class="fas fa-arrows-left-right mr-1.5 text-electric-cyan"></i>Swipe horizontally to explore all skills</span>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Skills Matrix Container with Mobile Horizontal Swipe Track -->
+            <div id="skills-matrix-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 skills-mobile-scroll">
                 <!-- Data Engineering -->
-                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-cyan-600">
-                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
-                        <i class="fas fa-network-wired text-electric-cyan"></i> Data Engineering
-                    </h3>
-                    <div class="space-y-3" id="skills-data-engineering">
-                        <!-- Rendered dynamically -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-cyan-600 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                            <i class="fas fa-network-wired text-electric-cyan"></i> Data Engineering
+                        </h3>
+                        <div class="space-y-3" id="skills-data-engineering">
+                            <!-- Rendered dynamically -->
+                        </div>
                     </div>
                 </div>
 
                 <!-- Languages & Tools -->
-                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-blue-600">
-                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
-                        <i class="fas fa-code text-electric-blue"></i> Languages &amp; Tools
-                    </h3>
-                    <div class="space-y-3" id="skills-languages-tools">
-                        <!-- Rendered dynamically -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-blue-600 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                            <i class="fas fa-code text-electric-blue"></i> Languages &amp; Tools
+                        </h3>
+                        <div class="space-y-3" id="skills-languages-tools">
+                            <!-- Rendered dynamically -->
+                        </div>
                     </div>
                 </div>
 
                 <!-- Data Analysis & Modeling -->
-                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-indigo-600">
-                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
-                        <i class="fas fa-magnifying-glass-chart text-indigo-500"></i> Data Analysis &amp; EDA
-                    </h3>
-                    <div class="space-y-3" id="skills-data-analysis">
-                        <!-- Rendered dynamically -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-indigo-600 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                            <i class="fas fa-magnifying-glass-chart text-indigo-500"></i> Data Analysis &amp; EDA
+                        </h3>
+                        <div class="space-y-3" id="skills-data-analysis">
+                            <!-- Rendered dynamically -->
+                        </div>
                     </div>
                 </div>
 
                 <!-- BI & Visualization -->
-                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-teal-600">
-                    <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
-                        <i class="fas fa-chart-pie text-teal-500"></i> BI &amp; Visualization
-                    </h3>
-                    <div class="space-y-3" id="skills-bi-visualization">
-                        <!-- Rendered dynamically -->
+                <div class="glass-card p-6 rounded-2xl border-t-2 border-t-teal-600 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-theme-primary mb-4 flex items-center gap-2">
+                            <i class="fas fa-chart-pie text-teal-500"></i> BI &amp; Visualization
+                        </h3>
+                        <div class="space-y-3" id="skills-bi-visualization">
+                            <!-- Rendered dynamically -->
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ==========================================================================
-             4. Featured Projects & Case Studies
+             4. Featured Projects & Case Studies (Mobile Horizontally Scrollable + View All)
              ========================================================================== -->
         <section id="projects" class="py-20 px-4 lg:px-8 section-alternate">
             <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                     <div>
                         <div class="badge-cyan mb-2">
                             <i class="fas fa-diagram-project mr-1.5"></i>Proof of Work
@@ -370,6 +385,9 @@
                         <p class="text-xs sm:text-sm text-theme-muted mt-1 font-medium">
                             ETL pipelines, internal automation dashboards, and applied machine learning models.
                         </p>
+                        <div class="mt-2">
+                            <span class="mobile-scroll-hint tag-pill text-[11px] font-bold"><i class="fas fa-arrows-left-right mr-1.5 text-electric-cyan"></i>Swipe horizontally to view projects</span>
+                        </div>
                     </div>
 
                     <!-- Category Filter Tabs -->
@@ -381,9 +399,18 @@
                     </div>
                 </div>
 
-                <!-- Projects Grid -->
-                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 projects-grid">
+                <!-- Projects Grid / Mobile Horizontal Swipe Carousel -->
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 projects-grid projects-mobile-scroll">
                     <!-- Rendered dynamically from PROJECTS_DATA -->
+                </div>
+
+                <!-- View All Projects on GitHub Button -->
+                <div class="mt-12 text-center">
+                    <a href="https://github.com/MohammadZishanAlam?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center gap-2.5 px-8 py-3.5 text-sm font-bold shadow-lg group" title="Open Mohammad Zishan Alam's repositories on GitHub">
+                        <i class="fab fa-github text-lg"></i>
+                        <span>View All Projects on GitHub</span>
+                        <i class="fas fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -411,7 +438,7 @@
         </section>
 
         <!-- ==========================================================================
-             6. Interactive Contact Section (Bot-Protected & Verified)
+             6. Interactive Contact Section (Bot-Protected Action Triggers)
              ========================================================================== -->
         <section id="contact" class="py-20 px-4 lg:px-8 section-alternate">
             <div class="max-w-7xl mx-auto">
@@ -433,35 +460,50 @@
                         <div class="glass-card p-6 rounded-2xl space-y-4 border-glow">
                             <h3 class="text-base font-bold text-theme-primary mb-2">Direct Contact Channels</h3>
 
-                            <!-- Email Card with Dynamic Obfuscation & Copy Button -->
-                            <div class="p-3.5 rounded-xl card-inner-box flex items-center justify-between gap-3 group/email transition-all hover:border-cyan-600/50">
-                                <a id="contact-email-link" href="#" class="flex items-center gap-3 overflow-hidden flex-1 no-underline" title="Click to compose an email">
-                                    <div class="w-10 h-10 rounded-lg bg-cyan-500/15 text-electric-cyan flex items-center justify-center text-base flex-shrink-0 group-hover/email:scale-105 transition-transform">
+                            <!-- Email Card (Clickable Action Trigger without exposed plain-text) -->
+                            <div class="p-4 rounded-xl card-inner-box flex items-center justify-between gap-3 transition-all hover:border-cyan-600/50">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-cyan-500/15 text-electric-cyan flex items-center justify-center text-base flex-shrink-0">
                                         <i class="far fa-envelope"></i>
                                     </div>
-                                    <div class="overflow-hidden">
-                                        <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Email Address</div>
-                                        <span class="user-email text-xs font-bold text-theme-primary group-hover/email:text-electric-cyan truncate block transition-colors">Connecting...</span>
+                                    <div>
+                                        <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Email Inquiries</div>
+                                        <div class="text-xs font-bold text-theme-primary">Direct Inquiries Welcome</div>
                                     </div>
-                                </a>
-                                <button id="copy-email-btn" type="button" class="p-2 rounded-lg card-inner-box hover:bg-cyan-500/20 text-theme-secondary hover:text-electric-cyan transition-colors text-xs flex-shrink-0" title="Copy email address to clipboard">
-                                    <i class="far fa-copy"></i>
-                                </button>
+                                </div>
+                                <div class="flex items-center gap-1.5 flex-shrink-0">
+                                    <button onclick="composeEmail()" class="btn-primary-sm text-xs font-bold shadow-sm" title="Open Mail Client">
+                                        <i class="fas fa-paper-plane mr-1"></i>Email
+                                    </button>
+                                    <button onclick="copyEmailToClipboard(event)" class="p-2 rounded-lg card-inner-box hover:bg-cyan-500/20 text-theme-secondary hover:text-electric-cyan transition-colors text-xs" title="Copy Email">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
                             </div>
 
-                            <!-- Phone Card -->
-                            <div class="p-3.5 rounded-xl card-inner-box flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-blue-500/15 text-electric-blue flex items-center justify-center text-base flex-shrink-0">
-                                    <i class="fas fa-phone"></i>
+                            <!-- Phone / Call Card (Clickable Action Trigger without exposed plain-text) -->
+                            <div class="p-4 rounded-xl card-inner-box flex items-center justify-between gap-3 transition-all hover:border-blue-600/50">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-500/15 text-electric-blue flex items-center justify-center text-base flex-shrink-0">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Phone &amp; WhatsApp</div>
+                                        <div class="text-xs font-bold text-theme-primary">Available for Direct Calls</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="text-[10px] text-theme-muted uppercase font-mono font-bold">Phone / WhatsApp</div>
-                                    <a id="contact-phone-link" href="#" class="user-phone text-xs font-bold text-theme-primary hover:text-electric-cyan">Connecting...</a>
+                                <div class="flex items-center gap-1.5 flex-shrink-0">
+                                    <button onclick="directCall()" class="btn-primary-sm text-xs font-bold shadow-sm" title="Direct Phone Call or WhatsApp">
+                                        <i class="fas fa-phone mr-1"></i>Call
+                                    </button>
+                                    <button onclick="copyPhoneToClipboard(event)" class="p-2 rounded-lg card-inner-box hover:bg-cyan-500/20 text-theme-secondary hover:text-electric-cyan transition-colors text-xs" title="Copy Phone Number">
+                                        <i class="far fa-copy"></i>
+                                    </button>
                                 </div>
                             </div>
 
                             <!-- Location Card -->
-                            <div class="p-3.5 rounded-xl card-inner-box flex items-center gap-3">
+                            <div class="p-4 rounded-xl card-inner-box flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-lg bg-indigo-500/15 text-indigo-500 flex items-center justify-center text-base flex-shrink-0">
                                     <i class="fas fa-location-dot"></i>
                                 </div>
@@ -472,7 +514,7 @@
                             </div>
 
                             <!-- Current Status Card -->
-                            <div class="p-3.5 rounded-xl card-inner-box flex items-center gap-3">
+                            <div class="p-4 rounded-xl card-inner-box flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-base flex-shrink-0">
                                     <i class="fas fa-briefcase"></i>
                                 </div>
@@ -483,20 +525,24 @@
                             </div>
                         </div>
 
-                        <!-- Social Quick Links -->
-                        <div class="glass-card p-4 rounded-2xl flex items-center justify-around">
-                            <a id="github-link" href="https://github.com/MohammadZishanAlam" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1 text-theme-muted hover:text-electric-cyan text-xs font-semibold transition-colors">
-                                <i class="fab fa-github text-xl"></i>
-                                <span>GitHub</span>
+                        <!-- 4-Button Social & Direct Connect Bar -->
+                        <div class="glass-card p-4 rounded-2xl grid grid-cols-4 gap-2 text-center">
+                            <a id="github-link" href="https://github.com/MohammadZishanAlam" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1.5 p-2 rounded-xl card-inner-box hover:text-electric-cyan text-xs font-semibold transition-colors">
+                                <i class="fab fa-github text-lg"></i>
+                                <span class="text-[11px]">GitHub</span>
                             </a>
-                            <a id="linkedin-link-2" href="https://linkedin.com/in/mohammad-zishan-alam-6ba779254" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1 text-theme-muted hover:text-electric-cyan text-xs font-semibold transition-colors">
-                                <i class="fab fa-linkedin text-xl"></i>
-                                <span>LinkedIn</span>
+                            <a id="linkedin-link-2" href="https://linkedin.com/in/mohammad-zishan-alam-6ba779254" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1.5 p-2 rounded-xl card-inner-box hover:text-electric-cyan text-xs font-semibold transition-colors">
+                                <i class="fab fa-linkedin text-lg"></i>
+                                <span class="text-[11px]">LinkedIn</span>
                             </a>
-                            <a href="#contact" class="flex flex-col items-center gap-1 text-theme-muted hover:text-electric-cyan text-xs font-semibold transition-colors">
-                                <i class="far fa-envelope text-xl"></i>
-                                <span>Message</span>
-                            </a>
+                            <button onclick="composeEmail()" class="flex flex-col items-center gap-1.5 p-2 rounded-xl card-inner-box hover:text-electric-cyan text-xs font-semibold transition-colors cursor-pointer" title="Send Email">
+                                <i class="far fa-envelope text-lg"></i>
+                                <span class="text-[11px]">Email</span>
+                            </button>
+                            <button onclick="directCall()" class="flex flex-col items-center gap-1.5 p-2 rounded-xl card-inner-box hover:text-electric-cyan text-xs font-semibold transition-colors cursor-pointer" title="Direct Call">
+                                <i class="fas fa-phone text-lg"></i>
+                                <span class="text-[11px]">Call</span>
+                            </button>
                         </div>
                     </div>
 
@@ -537,7 +583,7 @@
                                 </button>
                                 
                                 <p class="text-[11px] text-theme-muted text-center font-medium">
-                                    <i class="fas fa-lock mr-1 text-electric-cyan"></i>Messages are delivered directly to Mohammad Zishan Alam's primary email.
+                                    <i class="fas fa-lock mr-1 text-electric-cyan"></i>Messages are directly delivered via email
                                 </p>
                             </form>
                         </div>

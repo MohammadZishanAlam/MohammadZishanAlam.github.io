@@ -60,54 +60,54 @@
 }
 
 [data-theme="light"] {
-    /* LIGHT THEME (Crisp Arctic Icy-Blue & Glacial Aesthetics) */
-    --bg-primary: #edf5fc;
-    --bg-gradient: radial-gradient(circle at 50% 0%, #d8ecfa 0%, #edf6fd 45%, #e2f0fb 100%);
-    --bg-secondary: #e4f0fa;
-    --bg-tertiary: #d2e7f7;
-    --section-alt: linear-gradient(180deg, rgba(218, 238, 252, 0.65) 0%, rgba(205, 230, 250, 0.8) 100%);
-    --card-bg: rgba(255, 255, 255, 0.86);
+    /* LIGHT THEME (Vibrant Eye-Catching Arctic Icy-Blue & Glacial Crystals) */
+    --bg-primary: #ecf5fd;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #cee6fa 0%, #eaf4fd 40%, #d8ecfb 100%);
+    --bg-secondary: #e2f0fb;
+    --bg-tertiary: #cce4f8;
+    --section-alt: linear-gradient(180deg, rgba(212, 236, 253, 0.7) 0%, rgba(198, 228, 251, 0.85) 100%);
+    --card-bg: rgba(255, 255, 255, 0.88);
     --card-elevated: rgba(255, 255, 255, 0.98);
-    --card-inner: rgba(224, 240, 253, 0.75);
-    --border-color: rgba(30, 115, 175, 0.2);
-    --border-subtle: rgba(30, 115, 175, 0.12);
-    --border-glow: rgba(0, 140, 215, 0.45);
+    --card-inner: rgba(222, 240, 254, 0.8);
+    --border-color: rgba(0, 119, 194, 0.22);
+    --border-subtle: rgba(0, 119, 194, 0.12);
+    --border-glow: rgba(0, 140, 230, 0.55);
 
-    /* Crisp Icy Blue Accents */
-    --electric-cyan: #026aa7;
-    --electric-blue: #02457a;
-    --blue-accent: #013459;
-    --neon-glow: 0 6px 24px rgba(2, 106, 167, 0.18);
-    --card-shadow: 0 10px 28px -6px rgba(10, 50, 85, 0.08), 0 3px 10px -2px rgba(10, 50, 85, 0.04);
+    /* Eye-Catching Electric Azure & Midnight Sapphire */
+    --electric-cyan: #0077c2;
+    --electric-blue: #004e84;
+    --blue-accent: #003a63;
+    --neon-glow: 0 8px 28px rgba(0, 119, 194, 0.22);
+    --card-shadow: 0 12px 32px -6px rgba(2, 60, 110, 0.1), 0 4px 12px -2px rgba(2, 60, 110, 0.05);
 
-    /* Icy Navy & Deep Glacier Text Palette */
-    --text-primary: #041d30;
-    --text-secondary: #103858;
-    --text-muted: #3b6685;
-    --text-accent: #026aa7;
+    /* Ultra-Crisp High-Contrast Typography */
+    --text-primary: #02192d;
+    --text-secondary: #0d3454;
+    --text-muted: #2d5b80;
+    --text-accent: #0077c2;
 
     /* Chips & Badges */
-    --badge-bg: rgba(2, 106, 167, 0.1);
-    --badge-text: #026aa7;
-    --badge-border: rgba(2, 106, 167, 0.28);
-    --pill-bg: rgba(235, 246, 254, 0.9);
-    --pill-text: #041d30;
-    --pill-border: rgba(30, 115, 175, 0.25);
-    --tech-bg: rgba(238, 247, 255, 0.95);
-    --tech-text: #041d30;
+    --badge-bg: rgba(0, 119, 194, 0.12);
+    --badge-text: #0077c2;
+    --badge-border: rgba(0, 119, 194, 0.32);
+    --pill-bg: rgba(230, 244, 255, 0.95);
+    --pill-text: #02192d;
+    --pill-border: rgba(0, 119, 194, 0.28);
+    --tech-bg: rgba(235, 246, 255, 0.95);
+    --tech-text: #02192d;
 
     /* Navbar & Modal */
-    --nav-bg: rgba(235, 245, 253, 0.92);
-    --modal-bg: #edf5fc;
+    --nav-bg: rgba(232, 244, 254, 0.94);
+    --modal-bg: #ecf5fd;
     --modal-card: rgba(255, 255, 255, 0.98);
-    --orb-opacity: 0.12;
+    --orb-opacity: 0.16;
 
     /* Resume Sheet in Light Mode */
     --resume-bg: #ffffff;
-    --resume-paper-border: #bcd8ed;
-    --resume-text-title: #041d30;
-    --resume-text-body: #103858;
-    --resume-rule: #026aa7;
+    --resume-paper-border: #b8daf0;
+    --resume-text-title: #02192d;
+    --resume-text-body: #0d3454;
+    --resume-rule: #0077c2;
 }
 
 /* --- Global Reset & Base Setup (Full Native Inertia Scrolling) --- */
@@ -157,8 +157,8 @@ body {
 }
 
 [data-theme="light"] ::selection {
-    background: rgba(2, 106, 167, 0.25);
-    color: #041d30;
+    background: rgba(0, 119, 194, 0.25);
+    color: #02192d;
 }
 
 /* --- Glassmorphism & UI Card Foundations --- */
@@ -327,7 +327,7 @@ body {
     text-decoration: none;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(2, 106, 167, 0.3);
+    box-shadow: 0 4px 14px rgba(0, 119, 194, 0.35);
     transition: var(--transition-smooth);
 }
 
@@ -338,7 +338,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 22px rgba(2, 106, 167, 0.4);
+    box-shadow: 0 6px 22px rgba(0, 119, 194, 0.45);
 }
 
 [data-theme="dark"] .btn-primary:hover {
@@ -439,7 +439,7 @@ body {
     background: linear-gradient(135deg, var(--electric-cyan), var(--electric-blue));
     color: #ffffff;
     border-color: transparent;
-    box-shadow: 0 2px 14px rgba(2, 106, 167, 0.35);
+    box-shadow: 0 2px 14px rgba(0, 119, 194, 0.35);
 }
 
 [data-theme="dark"] .project-filter-btn.active-filter {
@@ -464,7 +464,7 @@ body {
     outline: none;
     background: var(--card-bg);
     border-color: var(--electric-cyan);
-    box-shadow: 0 0 15px rgba(2, 106, 167, 0.25);
+    box-shadow: 0 0 15px rgba(0, 119, 194, 0.3);
 }
 
 [data-theme="dark"] .custom-input:focus {
@@ -656,7 +656,7 @@ body {
 .loader {
     width: 36px;
     height: 36px;
-    border: 3px solid rgba(2, 106, 167, 0.2);
+    border: 3px solid rgba(0, 119, 194, 0.2);
     border-radius: 50%;
     border-top-color: var(--electric-cyan);
     animation: spin 0.8s linear infinite;
