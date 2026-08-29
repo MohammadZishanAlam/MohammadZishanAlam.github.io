@@ -34,12 +34,12 @@ const USER_CONFIG = {
         focus: "Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, Object-Oriented Programming, Software Engineering"
     },
 
-    // Core Technical Foundation Stats
+    // Core Technical Foundation Stats (No Internship in Hero)
     stats: [
         { label: "Core Focus", value: "Data Engineering" },
         { label: "Primary Languages", value: "Python & SQL" },
         { label: "Core Foundation", value: "DSA & DBMS" },
-        { label: "Internship Project", value: "Task Automation" }
+        { label: "Key Specialization", value: "ETL & Pipelines" }
     ],
 
     // Typing Animation Target Roles & Competencies

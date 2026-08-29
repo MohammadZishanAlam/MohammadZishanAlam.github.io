@@ -187,7 +187,7 @@ const SKILLS_DATA = {
         { name: "Data Structures & Algorithms (DSA)", level: 88, icon: "fas fa-brain", tag: "DSA" },
         { name: "SQL & Relational Databases", level: 92, icon: "fas fa-database", tag: "Query" },
         { name: "C / C++ (Core Programming)", level: 85, icon: "fas fa-code", tag: "Systems" },
-        { name: "Git & Version Control", level: 90, icon: "fab fa-git-alt", tag: "Tool" },
+        { name: "Git & Version Control", level: 90, icon: "fab fa-git-alt", tag: "Version Control" },
         { name: "VS Code & Jupyter Notebooks", level: 94, icon: "fas fa-terminal", tag: "IDE" }
     ]
 };
