@@ -6,8 +6,8 @@ const USER_CONFIG = {
     // Basic Details
     name: "Mohammad Zishan Alam",
     title: "Data & Pipeline Engineer | CS Undergrad",
-    tagline: "Data Engineering · DSA & Problem Solving · Python & SQL Architecture",
-    bio: "Computer Science undergraduate with practical experience building high-throughput ETL pipelines, internal compliance dashboards, and predictive models. Focused on clean Python architecture, robust SQL data workflows, and turning complex operational data into reliable business intelligence.",
+    tagline: "Data Pipelines · Python & SQL · Data Structures & Algorithms",
+    bio: "Computer Science undergraduate at Chaibasa Engineering College building ETL scripts, internal dashboards, and data validation tools. I write Python and SQL to automate repetitive data tasks, parse multi-format spreadsheets, and practice algorithmic problem solving in Python and C++.",
     location: "Ranchi, Jharkhand, India",
     availabilityStatus: "Open to work and collaborate",
     

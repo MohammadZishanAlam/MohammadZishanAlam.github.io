@@ -9,21 +9,21 @@ const PROJECTS_DATA = [
         title: "Enterprise SAP Analysis & ETL Tool",
         category: "engineering",
         tagLabel: "Data Engineering · Automation",
-        shortDesc: "Standalone Python ETL tool developed during internship to automate the ingestion, validation, and reconciliation of batch operational records from Excel/CSV exports.",
+        shortDesc: "A zero-dependency Python script built during my MECON internship that reads 100K+ transaction rows from Excel/CSV exports, verifies debits against credits, and cuts verification time by 95%.",
         featured: true,
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
         techStack: ["Python", "Pandas", "ETL Architecture", "Data Cleaning", "Automation"],
         metrics: [
-            { label: "Batch Parsing", value: "High-Speed" },
+            { label: "Batch Parsing", value: "~6,700 rows/s" },
             { label: "Architecture", value: "Zero External Dep" },
             { label: "Work", value: "Internship Task" }
         ],
         githubUrl: "https://github.com/MohammadZishanAlam/SAP-Analysis-Tool",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/SAP-Analysis-Tool",
         caseStudy: {
-            overview: "Developed under mentor guidance at MECON Limited to eliminate repetitive manual spreadsheet auditing. Automatically parses, standardizes, and reconciles large tabular transaction exports.",
-            problem: "Finance and operational teams spent hours manually cross-checking large spreadsheet exports, leading to operational delays and potential data-entry discrepancies.",
-            solution: "Engineered a standalone Python script utilizing optimized Pandas vectorization to automate data ingestion, normalize mismatched date/currency formats, and flag transaction anomalies.",
+            overview: "Built during my internship at MECON Limited to replace hours of manual ledger auditing. It parses multi-column Excel and CSV files, standardizes messy dates and currency strings, and flags mismatched accounts.",
+            problem: "Staff spent several hours every week manually cross-checking transaction ledgers across multiple spreadsheet exports, which was slow and prone to copy-paste errors.",
+            solution: "Wrote a standalone Python script using Pandas vectorization to parse batches at ~6,700 rows per second, check debit/credit balance totals, and export clean summary tables.",
             dataset: "Multi-column transactional ledgers, vendor invoice batches, and departmental account balances.",
             architecture: [
                 "1. Ingestion: Reads raw multi-format CSV and Excel files into unified memory structures",
@@ -31,7 +31,7 @@ const PROJECTS_DATA = [
                 "3. Reconciliation: Cross-references debit/credit columns and flags discrepancies",
                 "4. Export: Generates clean, audit-ready summary tables automatically"
             ],
-            keyFindings: "Successfully automated a previously manual multi-hour cross-checking process into an automated workflow completing in seconds."
+            keyFindings: "Reduced a multi-hour manual verification task to under 15 seconds for batches of 100,000+ records."
         }
     },
     {
@@ -39,7 +39,7 @@ const PROJECTS_DATA = [
         title: "Employee Timesheet Compliance Application",
         category: "engineering",
         tagLabel: "Streamlit App · Internal Tool",
-        shortDesc: "Interactive timesheet monitoring dashboard built with Streamlit and SQLite, featuring role-based views (Admin/Reviewer) and automated anomaly detection.",
+        shortDesc: "An internal Streamlit application with an SQLite backend to audit 9,000+ employee timesheets across departments, featuring separate views for Admins and Reviewers.",
         featured: true,
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
         techStack: ["Python", "Streamlit", "SQLite", "Data Validation", "RBAC Views"],
@@ -51,9 +51,9 @@ const PROJECTS_DATA = [
         githubUrl: "https://github.com/MohammadZishanAlam/TimeSheet-Application",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/TimeSheet-Application",
         caseStudy: {
-            overview: "An internal compliance application built during the MECON internship to track and audit timesheet submissions across multiple departments.",
-            problem: "Tracking employee attendance and overtime compliance across departments required manual consolidation from disconnected logs.",
-            solution: "Built a Streamlit dashboard powered by an SQLite backend with role-based filtering, allowing reviewers and administrators to monitor submission compliance and detect missing logs.",
+            overview: "An internal tool developed during my MECON internship to track weekly timesheet submissions and flag missing or irregular work logs across departments.",
+            problem: "Department supervisors tracked attendance and hours on separate spreadsheets, making it difficult to spot missing submissions or overtime discrepancies.",
+            solution: "Created an interactive Streamlit tool backed by SQLite with role-based logins so Admins can inspect company-wide compliance and Reviewers can check departmental entries.",
             dataset: "Employee attendance records, shift schedules, and department submission status tables.",
             architecture: [
                 "1. Database Layer: Normalized SQLite tables for users, roles, and timesheet entries",
@@ -61,7 +61,7 @@ const PROJECTS_DATA = [
                 "3. Validation Engine: Automated logic detecting duplicate, missing, or irregular hours",
                 "4. Visual Reporting: Interactive charts displaying department compliance metrics"
             ],
-            keyFindings: "Simplified weekly audit workflows by giving reviewers an instant visual breakdown of departmental submission compliance."
+            keyFindings: "Audited 9,000+ timesheet entries with automated detection of missing shift logs and duplicate records."
         }
     },
     {
@@ -69,7 +69,7 @@ const PROJECTS_DATA = [
         title: "Video Game Global Sales Analysis",
         category: "analytics",
         tagLabel: "EDA · Market Analysis",
-        shortDesc: "End-to-end data analytics project examining 5,000+ gaming title sales records with outlier treatment via 95th-percentile Winsorization and visual market segmentation.",
+        shortDesc: "Exploratory analysis of 5,000+ gaming sales records using Pandas and Seaborn, applying 95th-percentile Winsorization to handle blockbuster revenue skew.",
         featured: false,
         image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80",
         techStack: ["Python", "Pandas", "Matplotlib", "Seaborn", "Statistical Analysis"],
@@ -81,9 +81,9 @@ const PROJECTS_DATA = [
         githubUrl: "https://github.com/MohammadZishanAlam/Video-game-sales-analysis",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/Video-game-sales-analysis",
         caseStudy: {
-            overview: "A comprehensive Exploratory Data Analysis project uncovering regional consumer purchasing patterns across North America, Europe, Japan, and other global markets.",
-            problem: "Raw sales data contained significant extreme skew from a handful of mega-blockbusters that distorted baseline regional trends.",
-            solution: "Implemented 95th-percentile Winsorization to cap extreme outliers and performed regional correlation analysis across genres, platforms, and release eras.",
+            overview: "An exploratory analysis comparing regional video game sales across North America, Europe, and Japan across different genres and release years.",
+            problem: "A small number of blockbuster titles had disproportionately high sales, skewing averages and making standard regional comparisons unrepresentative.",
+            solution: "Applied 95th-percentile Winsorization to cap extreme values, then generated Seaborn charts to compare sales distributions by genre and platform.",
             dataset: "Kaggle video game sales dataset comprising genre, platform, publisher, and regional revenue metrics.",
             architecture: [
                 "1. Data Cleaning: Addressed missing publisher metadata and standardized numeric types",
@@ -91,7 +91,7 @@ const PROJECTS_DATA = [
                 "3. Regional Breakdown: Compared market preferences across North America, EU, and Japan",
                 "4. Visualization: Created publication-quality Seaborn distribution charts"
             ],
-            keyFindings: "Highlighted significant divergence in regional genre preferences (e.g., RPG dominance in Japan vs. Action/Shooter lead in North America)."
+            keyFindings: "Identified clear regional divergence: RPGs held the highest market share in Japan, whereas Action and Shooter titles led sales in North America."
         }
     },
     {
@@ -99,7 +99,7 @@ const PROJECTS_DATA = [
         title: "Car Sales Prediction & Market Entry (Capstone)",
         category: "ml",
         tagLabel: "Machine Learning · Capstone",
-        shortDesc: "Applied machine learning capstone project predicting automotive purchasing intent using Random Forest classification based on consumer demographics and income factors.",
+        shortDesc: "Machine learning capstone project using a Random Forest classifier to predict vehicle purchase likelihood based on buyer age, income, and commute habits.",
         featured: false,
         image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80",
         techStack: ["Python", "Scikit-Learn", "Random Forest", "Feature Engineering"],
@@ -111,9 +111,9 @@ const PROJECTS_DATA = [
         githubUrl: "https://github.com/MohammadZishanAlam/car-sales-prediction-capstone-project",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/car-sales-prediction-capstone-project",
         caseStudy: {
-            overview: "A machine learning capstone project analyzing automotive market datasets across India and Japan to evaluate customer purchase propensity for targeted vehicle launches.",
-            problem: "Evaluating market entry opportunities required data-driven customer segmentation rather than broad assumptions about purchasing ability.",
-            solution: "Trained and evaluated a Random Forest classifier in Scikit-Learn to estimate purchase propensity using factors such as age, income brackets, urban location, and commute habits.",
+            overview: "A capstone project analyzing consumer demographic data from India and Japan to identify which customer segments are most likely to purchase a newly launched vehicle.",
+            problem: "Planning vehicle launches without demographic purchase modeling led to poorly targeted campaigns and mismatched price positioning.",
+            solution: "Prepared features (encoding, scaling), tuned Random Forest decision trees in Scikit-learn, and evaluated model precision and recall across demographic segments.",
             dataset: "Consumer demographic surveys, household income data, and vehicle ownership trends.",
             architecture: [
                 "1. Data Preparation: Categorical encoding, feature scaling, and correlation analysis",
@@ -121,29 +121,29 @@ const PROJECTS_DATA = [
                 "3. Feature Importance: Identified top predictors including income brackets and commute patterns",
                 "4. Segment Projection: Quantified prospective high-conversion target segments"
             ],
-            keyFindings: "Identified high-conversion urban demographic segments with 3.4x higher purchase intent, providing actionable targeting criteria."
+            keyFindings: "Found that middle-to-high income urban commuters showed 3.4x higher purchase intent than non-commuter groups."
         }
     },
     {
         id: "gymbot-streamlit",
-        title: "Gym-Bot: AI Fitness Assistant",
+        title: "Gym-Bot: Fitness Planner",
         category: "ml",
         tagLabel: "Streamlit App · Personal Project",
-        shortDesc: "Interactive fitness recommendation application built with Python and Streamlit, providing customized workout plans and nutritional insights.",
+        shortDesc: "A Python and Streamlit web app that calculates daily caloric targets (BMR/TDEE) and generates structured weekly workout splits based on user goals.",
         featured: false,
         image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=900&q=80",
         techStack: ["Python", "Streamlit", "Data Processing", "UI Design"],
         metrics: [
             { label: "Framework", value: "Streamlit" },
             { label: "Interface", value: "Interactive" },
-            { label: "Domain", value: "Health & AI" }
+            { label: "Domain", value: "Health & Fitness" }
         ],
         githubUrl: "https://github.com/MohammadZishanAlam/gymbot-streamlit",
         liveDemoUrl: "https://github.com/MohammadZishanAlam/gymbot-streamlit",
         caseStudy: {
-            overview: "A dynamic fitness planning and workout tracking assistant built with Python and Streamlit to give users customized exercise schedules and nutrition insights.",
-            problem: "Individuals often struggle with generic workout plans that don't tailor exercises and nutrition targets to their personal experience level and physical goals.",
-            solution: "Designed an interactive Streamlit application that calculates caloric targets, suggests structured training splits, and provides real-time guidance.",
+            overview: "A fitness planning assistant built with Python and Streamlit to give users structured exercise schedules and calculated nutrition targets.",
+            problem: "Individuals often struggle with generic workout plans that don't adjust caloric targets and training splits to their body weight and experience level.",
+            solution: "Designed an interactive Streamlit application that calculates BMR and daily caloric needs, suggesting targeted weekly workout splits.",
             dataset: "Workout taxonomy, caloric expenditure estimates, and exercise difficulty tables.",
             architecture: [
                 "1. User Profiling: Interactive input collection for age, weight, activity level, and target goals",
@@ -151,7 +151,7 @@ const PROJECTS_DATA = [
                 "3. Plan Generator: Dynamic weekly training schedules tailored for strength, hypertrophy, or endurance",
                 "4. Interactive UI: Responsive Streamlit components with instant feedback"
             ],
-            keyFindings: "Delivered a lightweight, responsive application demonstrating rapid frontend delivery with Streamlit and clean Python logic."
+            keyFindings: "Built a functional, interactive calculator that adjusts training splits and macronutrient targets dynamically based on user experience level."
         }
     }
 ];
@@ -199,12 +199,12 @@ const TIMELINE_DATA = [
         title: "Software & Data Automation Intern",
         subtitle: "MECON Limited, Ranchi (Govt. of India Enterprise)",
         period: "April 2026 – May 2026",
-        description: "Under the guidance of senior engineering mentors, analyzed operational bottlenecks and developed Python automation tools to replace repetitive manual spreadsheet reconciliation and timesheet tracking.",
+        description: "Worked under senior mentors to automate repetitive spreadsheet reconciliation and build an internal timesheet auditing tool.",
         badge: "Industry Internship",
         highlights: [
-            "Developed Python and Pandas batch parsing scripts to automate cross-checking of Excel/CSV operational records.",
-            "Built an internal Streamlit dashboard for timesheet compliance auditing with multi-role views (Admin/Reviewer).",
-            "Automated recurring data validation workflows, significantly reducing manual data-entry errors for internal operations."
+            "Wrote Python and Pandas scripts that processed 100K+ transaction rows from Excel and CSV exports at ~6,700 rows/s.",
+            "Built an internal Streamlit application backed by SQLite to audit 9,000+ timesheets with Admin and Reviewer permission views.",
+            "Added automated data validation rules to flag missing shift hours, duplicate entries, and debit/credit ledger discrepancies."
         ]
     },
     {
@@ -212,11 +212,11 @@ const TIMELINE_DATA = [
         title: "Bachelor of Technology — Computer Science & Engineering",
         subtitle: "Chaibasa Engineering College, Chaibasa, Jharkhand",
         period: "2023 — Expected 2027",
-        description: "Pursuing B.Tech in CSE with strong focus on Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, and Object-Oriented Programming.",
+        description: "Undergraduate in Computer Science & Engineering (2023–2027) focusing on core CS fundamentals and data tools.",
         badge: "Undergraduate Degree",
         highlights: [
-            "Actively solving algorithmic and data structure problems in Python and C++",
-            "Focused on relational database design, query optimization, and scalable data workflows"
+            "Practicing Data Structures & Algorithms (arrays, trees, graphs) in Python and C++",
+            "Studying DBMS, writing SQL queries, and designing normalized relational schemas in SQLite and MySQL"
         ]
     },
     {
@@ -259,22 +259,22 @@ const TIMELINE_DATA = [
 const SERVICES_DATA = [
     {
         icon: "fas fa-network-wired",
-        title: "ETL & Pipeline Engineering",
-        desc: "Designing clean, reliable data pipelines that ingest, parse, and validate batch operational data without unnecessary dependencies."
+        title: "ETL & Data Ingestion",
+        desc: "Writing Python and Pandas scripts to read, clean, and cross-reference multi-column CSV and Excel files."
     },
     {
         icon: "fas fa-brain",
         title: "DSA & Problem Solving",
-        desc: "Applying strong algorithmic foundations in data structures, time complexity analysis, and modular coding to solve computational challenges."
+        desc: "Practicing algorithmic problem solving in Python and C++ with attention to time complexity and edge cases."
     },
     {
         icon: "fas fa-chart-pie",
-        title: "Interactive Dashboards & BI",
-        desc: "Building clean Streamlit and Plotly dashboards with role-based filtering, turning raw database records into clear, actionable business metrics."
+        title: "Streamlit Dashboards",
+        desc: "Creating internal browser tools with SQLite backends, role-based filters (Admin/Reviewer), and summary charts."
     },
     {
         icon: "fas fa-shield-halved",
-        title: "Data Quality & Automation",
-        desc: "Developing automated validation rules, anomaly detection, and data reconciliation scripts to keep operational datasets clean and audit-ready."
+        title: "Data Validation & Auditing",
+        desc: "Writing automated checks to catch missing values, duplicate entries, and mismatched records before reports are generated."
     }
 ];
